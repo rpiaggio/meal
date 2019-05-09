@@ -19,10 +19,10 @@ object Test extends App {
 
   def get() = {
     BlazeClientBuilder[IO](global).resource.use { client =>
-      val httpClient = ResponseLogger(true, true, logAction = Some{s:String => IO(println(s))})(client)
-      val httpClient1 = FollowRedirectWithCookies(5)(httpClient)
+//      val httpClient = ResponseLogger(true, true, logAction = Some{s:String => IO(println(s))})(client)
+      val httpClient = FollowRedirectWithCookies(5)(client)
 
-      httpClient1.get(url) {
+      httpClient.get(url) {
         case Status.Successful(r) => r.attemptAs[String].leftMap(_.message).value
         case r => r.as[String].map(b => Left(s"Request failed with status ${r.status.code} and body $b"))
       }
