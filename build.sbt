@@ -23,5 +23,7 @@ addCompilerPlugin("org.typelevel" %% "kind-projector" % "0.10.0")
 libraryDependencies ++= Seq(
   "org.http4s" %% "http4s-dsl" % http4sVersion,
   "org.http4s" %% "http4s-blaze-server" % http4sVersion,
-  "org.http4s" %% "http4s-blaze-client" % http4sVersion
+  "org.http4s" %% "http4s-blaze-client" % http4sVersion,
+  "com.beachape" %% "enumeratum" % "1.5.13",
+  "org.jsoup" % "jsoup" % "1.11.3",
 )
