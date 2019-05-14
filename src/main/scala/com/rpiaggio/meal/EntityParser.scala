@@ -2,6 +2,8 @@ package com.rpiaggio.meal
 
 import fs2.{Chunk, Pipe, Pull}
 
+import scala.annotation.tailrec
+
 object EntityParser {
 
   private case class ParserState(entryRemainingInstructions: Option[Seq[ParseInstruction]] = None,
@@ -15,14 +17,14 @@ object EntityParser {
           head.map { str =>
             val fullStr = previousBuffer + str
 
-            //                    @tailrec
+//                                @tailrec
             def parseChunk(state: ParserState, lastIndex: Int = 0, accum: Seq[EntryData] = Seq.empty): (ParserState, Int, Seq[EntryData]) = {
               val nextString = state.entryRemainingInstructions.fold(parsePattern.start)(_.head.until)
               val nextIndex = fullStr.indexOfSlice(nextString, lastIndex)
 
               if (nextIndex >= 0) {
                 state.entryRemainingInstructions.fold {
-                  parseChunk(state.copy(entryRemainingInstructions = Some(parsePattern.instructions)), nextIndex + parsePattern.start.length, accum)
+                  parseChunk(ParserState(Some(parsePattern.instructions)), nextIndex + parsePattern.start.length, accum)
                 } { instructions =>
                   val currentInstruction = instructions.head
                   val newCurrentEntry =
