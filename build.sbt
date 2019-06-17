@@ -24,6 +24,8 @@ libraryDependencies ++= Seq(
   "org.http4s" %% "http4s-dsl" % http4sVersion,
   "org.http4s" %% "http4s-blaze-server" % http4sVersion,
   "org.http4s" %% "http4s-blaze-client" % http4sVersion,
+  "org.tpolecat" %% "atto-core" % "0.6.5",
+  "org.tpolecat" %% "atto-fs2" % "0.6.5",
   "com.beachape" %% "enumeratum" % "1.5.13",
   "org.jsoup" % "jsoup" % "1.11.3",
   "org.scala-lang.modules" %% "scala-xml" % "1.1.1"
