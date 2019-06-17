@@ -10,11 +10,12 @@ import org.http4s.implicits._
 import org.http4s.server.blaze._
 import org.http4s.server.Router
 import org.http4s.headers.`Content-Type`
+import io.github.howardjohn.lambda.http4s.Http4sLambdaHandler
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
 
-object Test extends IOApp {
+object WebServer extends IOApp {
   implicit val cs: ContextShift[IO] = IO.contextShift(global)
   implicit override val timer: Timer[IO] = IO.timer(global)
 
@@ -54,4 +55,6 @@ object Test extends IOApp {
       .drain
       .as(ExitCode.Success)
   }
+
+  class EntryPoint extends Http4sLambdaHandler(service)
 }

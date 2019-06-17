@@ -26,5 +26,8 @@ libraryDependencies ++= Seq(
   "org.http4s" %% "http4s-blaze-client" % http4sVersion,
   "com.beachape" %% "enumeratum" % "1.5.13",
   "org.jsoup" % "jsoup" % "1.11.3",
-  "org.scala-lang.modules" %% "scala-xml" % "1.1.1"
+  "org.scala-lang.modules" %% "scala-xml" % "1.1.1",
+  "io.github.howardjohn" %% "http4s-lambda" % "0.3.1"
 )
+
+enablePlugins(AwsLambdaPlugin)
