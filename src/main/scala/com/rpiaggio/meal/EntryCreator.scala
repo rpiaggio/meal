@@ -15,9 +15,12 @@ object EntryCreator {
           parameterPattern.replaceAllIn(template, mtch => seq(mtch.group(1).toInt - 1).trim)
         }
 
+        println(s"** CONVERTING [$seq]")
+        println(s"** URI: [${replace(entryTemplate.link)}")
+
         FeedEntry(
           Jsoup.parse(replace(entryTemplate.title)).body.text,
-          Uri.fromString(replace(entryTemplate.link)).right.get.resolve(baseUri).toString,
+          Uri.fromString(replace(entryTemplate.link)).right.map(_.resolve(baseUri)).getOrElse(baseUri).toString,
           replace(entryTemplate.description)
         )
       }

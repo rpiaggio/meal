@@ -6,7 +6,7 @@ import scala.annotation.tailrec
 
 object EntityParser {
 
-  private case class ParserState(entryRemainingInstructions: List[ParseUntil], currentEntry: EntryData = Nil,
+  private case class ParserState(entryRemainingInstructions: List[ParseUntil], reverseCurrentEntry: EntryData = Nil,
                                  reverseCapture: List[Char] = Nil, currentInstructionMatching: Int = 0)
 
   def apply[F[_]](parsePattern: ParsePattern): Pipe[F, String, EntryData] = {
@@ -20,13 +20,13 @@ object EntityParser {
               def parseStr(state: ParserState, index: Int = 0, reverseAccum: List[EntryData] = Nil): (ParserState, List[EntryData]) = {
                 if (index >= str.length) {
                   state.entryRemainingInstructions match {
-                    case Nil => (ParserState(parsePattern.instructions), (state.currentEntry +: reverseAccum).reverse)
+                    case Nil => (ParserState(parsePattern.instructions), (state.reverseCurrentEntry.reverse +: reverseAccum).reverse)
                     case _ => (state, reverseAccum.reverse)
                   }
                 } else {
                   state.entryRemainingInstructions match {
                     case Nil =>
-                      parseStr(ParserState(parsePattern.instructions), index, state.currentEntry +: reverseAccum)
+                      parseStr(ParserState(parsePattern.instructions), index, state.reverseCurrentEntry.reverse +: reverseAccum)
                     case currentInstruction :: remainingInstructions =>
                       val currentInstructionStr = currentInstruction.str
 
@@ -53,9 +53,9 @@ object EntityParser {
                       if (newCurrentInstructionMatching == currentInstructionStr.length) {
                         val newCurrentEntry =
                           if (currentInstruction.action == ParseAction.Capture) {
-                            newReverseCapture.reverse.dropRight(currentInstructionStr.length).mkString +: state.currentEntry
+                            newReverseCapture.reverse.dropRight(currentInstructionStr.length).mkString +: state.reverseCurrentEntry
                           } else {
-                            state.currentEntry
+                            state.reverseCurrentEntry
                           }
                         parseStr(ParserState(remainingInstructions, newCurrentEntry), index + 1, reverseAccum)
                       } else {

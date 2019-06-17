@@ -23,7 +23,15 @@ object Test extends IOApp {
 
   val client = new HttpClient[IO]
 
-  val outputStream = RssRenderer(feed.channelEntry, client.stream(feed.channelEntry.link).through(feed.parser).through(feed.formatter))
+  val outputStream = RssRenderer(feed.channelEntry,
+    client.stream(feed.channelEntry.link)
+      .through(feed.parser)
+      .through(feed.formatter)
+      .handleErrorWith { e =>
+        e.printStackTrace()
+        Stream.emit(FeedEntry(e.getMessage, "", e.getStackTrace.map(_.toString).mkString("\n")))
+      }
+  )
 
   val service = HttpRoutes.of[IO] {
     case _ => Ok(outputStream, `Content-Type`(MediaType.application.`rss+xml`, Charset.`UTF-8`))
