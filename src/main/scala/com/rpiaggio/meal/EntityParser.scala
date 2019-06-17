@@ -6,43 +6,39 @@ import scala.annotation.tailrec
 
 object EntityParser {
 
-  private case class ParserState(entryRemainingInstructions: Option[Seq[ParseInstruction]] = None,
-                                 currentEntry: EntryData = Seq.empty[String])
+  private case class ParserState(entryRemainingInstructions: List[ParseUntil], currentEntry: EntryData = Seq.empty[String])
 
   def apply[F[_]](parsePattern: ParsePattern): Pipe[F, String, EntryData] = {
 
-    def go(s: fs2.Stream[F, String], goState: ParserState = ParserState(), previousBuffer: String = ""): Pull[F, EntryData, Unit] = {
+    def go(s: fs2.Stream[F, String], goState: ParserState = ParserState(parsePattern.instructions), previousBuffer: String = ""): Pull[F, EntryData, Unit] = {
       s.pull.uncons.flatMap {
         case Some((head, tail)) =>
           head.map { str =>
             val fullStr = previousBuffer + str
 
-//                                @tailrec
+            @tailrec
             def parseChunk(state: ParserState, lastIndex: Int = 0, accum: Seq[EntryData] = Seq.empty): (ParserState, Int, Seq[EntryData]) = {
-              val nextString = state.entryRemainingInstructions.fold(parsePattern.start)(_.head.until)
-              val nextIndex = fullStr.indexOfSlice(nextString, lastIndex)
+              state.entryRemainingInstructions match {
+                case Nil =>
+                  parseChunk(ParserState(parsePattern.instructions), lastIndex, accum :+ state.currentEntry)
+                case currentInstruction :: remainingInstructions =>
 
-              if (nextIndex >= 0) {
-                state.entryRemainingInstructions.fold {
-                  parseChunk(ParserState(Some(parsePattern.instructions)), nextIndex + parsePattern.start.length, accum)
-                } { instructions =>
-                  val currentInstruction = instructions.head
-                  val newCurrentEntry =
-                    if (currentInstruction.action == ParseAction.Capture) {
-                      state.currentEntry :+ fullStr.slice(lastIndex, nextIndex).replaceAll("[\n\r]", "")
-                    } else
-                      state.currentEntry
-                  val newLastIndex = nextIndex + currentInstruction.until.length
+                  val nextString = currentInstruction.str
+                  val nextIndex = fullStr.indexOfSlice(nextString, lastIndex)
 
-                  val remainingInstructions = instructions.tail
-                  if (remainingInstructions.isEmpty) {
-                    parseChunk(ParserState(None, Seq.empty[String]), newLastIndex, accum :+ newCurrentEntry)
+                  if (nextIndex >= 0) {
+                    val newCurrentEntry =
+                      if (currentInstruction.action == ParseAction.Capture) {
+                        state.currentEntry :+ fullStr.slice(lastIndex, nextIndex).replaceAll("[\n\r]", "")
+                      } else {
+                        state.currentEntry
+                      }
+                    val newLastIndex = nextIndex + currentInstruction.str.length
+
+                    parseChunk(ParserState(remainingInstructions, newCurrentEntry), newLastIndex, accum)
                   } else {
-                    parseChunk(ParserState(Some(remainingInstructions), newCurrentEntry), newLastIndex, accum)
+                    (state, lastIndex, accum)
                   }
-                }
-              } else {
-                (state, lastIndex, accum)
               }
             }
 

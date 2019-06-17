@@ -20,11 +20,22 @@ object ParseAction extends Enum[ParseAction] {
   lazy val withRepresentation: Map[String, ParseAction] = values.map(action => action.representation -> action).toMap
 }
 
-final case class ParseInstruction(action: ParseAction, until: String)
+final case class ParseUntil(action: ParseAction, str: String) {
+  // Compute Knuth-Morris-Pratt π function for given string.
+  lazy val pi: Vector[Int] = {
+    (1 until str.length).foldLeft(Vector(0)) { case (pi, q) =>
+      @tailrec
+      def nextK(k: Int): Int =
+        if (k > 0 && str(k) != str(q))
+          nextK(pi(k))
+        else if (str(k) == str(q)) k + 1 else k
 
-final case class ParsePattern(start: String, doingFirst: ParseInstruction, andThen: ParseInstruction*) {
-  val instructions = doingFirst +: andThen
+      pi :+ nextK(pi.last)
+    }
+  }
 }
+
+final case class ParsePattern(instructions: List[ParseUntil])
 
 object ParsePattern {
   private val fakeSeparator = "<!!!!>"
@@ -35,8 +46,8 @@ object ParsePattern {
       .replaceAll("[\\n\\r]", "")
       .replaceAll(anyParserActionPattern, s"$fakeSeparator$$1$fakeSeparator")
       .split(fakeSeparator)
-    val instructions = tokens.tail.grouped(2).collect { case Array(actionStr, until) => ParseInstruction(ParseAction.withRepresentation(actionStr), until) }.toSeq
-    ParsePattern(tokens.head, instructions.head, instructions.tail: _*)
+    val instructions = tokens.tail.grouped(2).collect { case Array(actionStr, until) => ParseUntil(ParseAction.withRepresentation(actionStr), until) }.toList
+    ParsePattern(ParseUntil(ParseAction.Ignore, tokens.head) +: instructions)
   }
 }
 
