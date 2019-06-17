@@ -6,45 +6,69 @@ import scala.annotation.tailrec
 
 object EntityParser {
 
-  private case class ParserState(entryRemainingInstructions: List[ParseUntil], currentEntry: EntryData = Seq.empty[String])
+  private case class ParserState(entryRemainingInstructions: List[ParseUntil], currentEntry: EntryData = Nil,
+                                 reverseCapture: List[Char] = Nil, currentInstructionMatching: Int = 0)
 
   def apply[F[_]](parsePattern: ParsePattern): Pipe[F, String, EntryData] = {
 
-    def go(s: fs2.Stream[F, String], goState: ParserState = ParserState(parsePattern.instructions), previousBuffer: String = ""): Pull[F, EntryData, Unit] = {
+    def go(s: fs2.Stream[F, String], goState: ParserState = ParserState(parsePattern.instructions)): Pull[F, EntryData, Unit] = {
       s.pull.uncons.flatMap {
         case Some((head, tail)) =>
-          head.map { str =>
-            val fullStr = previousBuffer + str
-
-            @tailrec
-            def parseChunk(state: ParserState, lastIndex: Int = 0, accum: Seq[EntryData] = Seq.empty): (ParserState, Int, Seq[EntryData]) = {
-              state.entryRemainingInstructions match {
-                case Nil =>
-                  parseChunk(ParserState(parsePattern.instructions), lastIndex, accum :+ state.currentEntry)
-                case currentInstruction :: remainingInstructions =>
-
-                  val nextString = currentInstruction.str
-                  val nextIndex = fullStr.indexOfSlice(nextString, lastIndex)
-
-                  if (nextIndex >= 0) {
-                    val newCurrentEntry =
-                      if (currentInstruction.action == ParseAction.Capture) {
-                        state.currentEntry :+ fullStr.slice(lastIndex, nextIndex).replaceAll("[\n\r]", "")
-                      } else {
-                        state.currentEntry
-                      }
-                    val newLastIndex = nextIndex + currentInstruction.str.length
-
-                    parseChunk(ParserState(remainingInstructions, newCurrentEntry), newLastIndex, accum)
-                  } else {
-                    (state, lastIndex, accum)
+          val (newState, outs) =
+            head.mapAccumulate(goState) { case (mapState, str) =>
+              @tailrec
+              def parseStr(state: ParserState, index: Int = 0, reverseAccum: List[EntryData] = Nil): (ParserState, List[EntryData]) = {
+                if (index >= str.length) {
+                  state.entryRemainingInstructions match {
+                    case Nil => (ParserState(parsePattern.instructions), (state.currentEntry +: reverseAccum).reverse)
+                    case _ => (state, reverseAccum.reverse)
                   }
+                } else {
+                  state.entryRemainingInstructions match {
+                    case Nil =>
+                      parseStr(ParserState(parsePattern.instructions), index, state.currentEntry +: reverseAccum)
+                    case currentInstruction :: remainingInstructions =>
+                      val currentInstructionStr = currentInstruction.str
+
+                      val newCurrentInstructionMatching = {
+                        @tailrec
+                        def nextMatching(currentMatching: Int = state.currentInstructionMatching): Int = {
+                          if (currentMatching > 0 && str(index) != currentInstructionStr(currentMatching))
+                            nextMatching(currentInstruction.pi(currentMatching - 1))
+                          else if (str(index) == currentInstructionStr(state.currentInstructionMatching))
+                            currentMatching + 1
+                          else 0
+                        }
+
+                        nextMatching()
+                      }
+
+                      val newReverseCapture =
+                        if (currentInstruction.action == ParseAction.Capture) {
+                          str(index) +: state.reverseCapture
+                        } else {
+                          Nil
+                        }
+
+                      if (newCurrentInstructionMatching == currentInstructionStr.length) {
+                        val newCurrentEntry =
+                          if (currentInstruction.action == ParseAction.Capture) {
+                            newReverseCapture.reverse.dropRight(currentInstructionStr.length).mkString +: state.currentEntry
+                          } else {
+                            state.currentEntry
+                          }
+                        parseStr(ParserState(remainingInstructions, newCurrentEntry), index + 1, reverseAccum)
+                      } else {
+                        parseStr(state.copy(reverseCapture = newReverseCapture, currentInstructionMatching = newCurrentInstructionMatching), index + 1, reverseAccum)
+                      }
+                  }
+                }
               }
+
+              parseStr(mapState)
             }
 
-            val (newState, lastIndex, outs) = parseChunk(goState)
-            Pull.output(Chunk(outs: _*)) >> go(tail, newState, fullStr.drop(lastIndex))
-          }.head.get
+          Pull.output(outs.flatMap(entries => Chunk(entries:_*))) >> go(tail, newState)
         case None => Pull.done
       }
     }

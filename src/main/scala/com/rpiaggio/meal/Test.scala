@@ -2,6 +2,7 @@ package com.rpiaggio.meal
 
 import cats.effect._
 import cats.implicits._
+import fs2.Stream
 import org.http4s.{Charset, HttpRoutes, MediaType}
 import org.http4s.syntax._
 import org.http4s.dsl.io._
@@ -90,6 +91,33 @@ object Test extends IOApp {
       //      val p = "ababababca"
       //      println(computeKMPPi(p))
 
+      ExitCode.Success
+    }
+  }
+
+  def run4(args: List[String]) = {
+    import cats._
+    import cats.implicits._
+    import fs2._
+    import scala.concurrent.duration._
+
+
+    val pattern = ParsePattern(List(ParseUntil(ParseAction.Ignore, ">>>"), ParseUntil(ParseAction.Capture, "<<<")))
+    val parser = EntityParser[IO](pattern)
+
+    val stream = Stream.emits[IO, String](List("1", "x2f", "e z", ">>", ">HO", "LA!", "<", "<<", "je", ">", ">", ">", ">", ">", ":", ")", "<", "<", "OSO<<<")).metered(1.seconds)
+
+
+    val xxx =
+      stream
+        .through(_.map { x => println(s"< $x"); x })
+        .through(parser)
+        .through(_.map { x => println(s">> $x"); x })
+        .compile
+        .toList
+
+    xxx.map { r =>
+      println(r)
       ExitCode.Success
     }
   }

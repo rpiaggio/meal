@@ -1,7 +1,7 @@
 package com.rpiaggio
 
 package object meal {
-  type EntryData = Seq[String]
+  type EntryData = List[String]
 
   protected[meal] val PAGES_REQUEST = 10
 
