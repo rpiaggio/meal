@@ -30,4 +30,10 @@ libraryDependencies ++= Seq(
   "io.github.howardjohn" %% "http4s-lambda" % "0.3.1"
 )
 
+libraryDependencies ++= Seq(
+  "com.lihaoyi" %% "utest" % "0.5.3"
+).map(_ % "test")
+
+testFrameworks += new TestFramework("utest.runner.Framework")
+
 enablePlugins(AwsLambdaPlugin)
