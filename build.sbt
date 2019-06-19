@@ -35,5 +35,3 @@ libraryDependencies ++= Seq(
 ).map(_ % "test")
 
 testFrameworks += new TestFramework("utest.runner.Framework")
-
-enablePlugins(AwsLambdaPlugin)

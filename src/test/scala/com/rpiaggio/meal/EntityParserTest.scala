@@ -17,9 +17,9 @@ object EntityParserTest extends TestSuite {
 
   val converted =
     stream
-      .through(_.map { x => println(s"< $x"); x })
+//      .through(_.map { x => println(s"< $x"); x })
       .through(parser)
-      .through(_.map { x => println(s">> $x"); x })
+//      .through(_.map { x => println(s">> $x"); x })
       .compile
       .toList
 
