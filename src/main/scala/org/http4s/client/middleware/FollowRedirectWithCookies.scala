@@ -65,19 +65,21 @@ object FollowRedirectWithCookies {
           else
             req
 
-        def carryCookies(req: Request[F]): Request[F] =
-          resp.cookies.foldLeft(req) { case (nextReq, cookie) => nextReq.addCookie(cookie.name, cookie.content) }
+        def propagateCookies(req: Request[F], nextUri: Uri): Request[F] =
+          if (req.uri.authority == nextUri.authority)
+            resp.cookies.foldLeft(req) { case (nextReq, cookie) => nextReq.addCookie(cookie.name, cookie.content) }
+          else
+            req
 
-        def nextRequest(method: Method, nextUri: Uri, bodyOpt: Option[Stream[F, Byte]])
-        : Request[F] =
+        def nextRequest(method: Method, nextUri: Uri, bodyOpt: Option[Stream[F, Byte]]): Request[F] =
           bodyOpt match {
             case Some(body) =>
-              carryCookies(stripSensitiveHeaders(nextUri))
+              propagateCookies(stripSensitiveHeaders(nextUri), nextUri)
                 .withMethod(method)
                 .withUri(nextUri)
                 .withBodyStream(body)
             case None =>
-              carryCookies(stripSensitiveHeaders(nextUri))
+              propagateCookies(stripSensitiveHeaders(nextUri), nextUri)
                 .withMethod(method)
                 .withUri(nextUri)
                 .withEmptyBody

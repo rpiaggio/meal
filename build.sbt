@@ -16,7 +16,7 @@ scalacOptions ++= Seq(
   "-Ypartial-unification"
 )
 
-val http4sVersion = "0.20.0"
+val http4sVersion = "0.20.3"
 
 addCompilerPlugin("org.typelevel" %% "kind-projector" % "0.10.0")
 
@@ -27,7 +27,7 @@ libraryDependencies ++= Seq(
   "com.beachape" %% "enumeratum" % "1.5.13",
   "org.jsoup" % "jsoup" % "1.11.3",
   "org.scala-lang.modules" %% "scala-xml" % "1.1.1",
-  "io.github.howardjohn" %% "http4s-lambda" % "0.3.1"
+  "io.github.howardjohn" %% "http4s-lambda" % "0.4.0-SNAPSHOT"
 )
 
 libraryDependencies ++= Seq(
