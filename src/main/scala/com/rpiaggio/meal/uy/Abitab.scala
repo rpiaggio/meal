@@ -12,9 +12,7 @@ object Abitab extends FeedList {
   private val entryTemplate = FeedEntry("{%2}", "{%1}", "")
 
   private def buildFeed(title: String, url: String) =
-    Feed(FeedEntry(title, url, title), parsePattern, entryTemplate)
-
-  // TODO: MULTIPAGE!
+    Feed(FeedEntry(title, url, title), parsePattern, entryTemplate, Some(12))
 
   val feeds = Map(
     "abitab-musica" -> buildFeed("Abitab Música", "https://www.abitab.com.uy/abitab/AjaxPromo?idroot=1&categoria=12071&site=12&channel=abitab&page=$page"),

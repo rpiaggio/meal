@@ -9,15 +9,11 @@ import org.http4s.server.blaze._
 import org.http4s.server.Router
 import org.http4s.headers.`Content-Type`
 
-class WebServer[F[_] : ConcurrentEffect : Timer](feeds: Map[String, Feed], host: String, port: Int) extends Http4sDsl[F] {
-  val client = new HttpClient[F]
+class WebServer[F[_] : ConcurrentEffect : Timer](feeds: Map[String, Feed], host: String, port: Int)
+  extends FeedBuilder[F] with Http4sDsl[F] {
 
-  // TODO: MULTI PAGE FEEDS!!!!
-
-  def render(feed: Feed): Stream[F, Chunk[Byte]] = RssRenderer(feed.channelEntry,
-    client.stream(feed.channelEntry.link)
-      .through(feed.parser)
-      .through(feed.formatter)
+  private def render(feed: Feed): Stream[F, Chunk[Byte]] = RssRenderer(feed.channelEntry,
+    feedStream(feed)
       .handleErrorWith { e =>
         e.printStackTrace()
         Stream.emit(FeedEntry(e.getMessage, "", e.getStackTrace.map(_.toString).mkString("\n")))
@@ -38,5 +34,4 @@ class WebServer[F[_] : ConcurrentEffect : Timer](feeds: Map[String, Feed], host:
       .serve
       .compile
       .drain
-  //      .as(ExitCode.Success)
 }

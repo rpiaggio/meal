@@ -62,7 +62,7 @@ final case class FeedEntry(title: String, link: String, description: String) {
       Stream(Uri.fromString(link).right.get)
 }
 
-final case class Feed(channelEntry: FeedEntry, parsePattern: ParsePattern, entryTemplate: FeedEntry) {
+final case class Feed(channelEntry: FeedEntry, parsePattern: ParsePattern, entryTemplate: FeedEntry, pageSize: Option[Int] = None) {
   def parser[F[_]] = EntityParser[F](parsePattern)
   def formatter[F[_]] = EntryCreator[F](entryTemplate, channelEntry.uris.head)
 
