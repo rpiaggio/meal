@@ -1,10 +1,7 @@
 package com.rpiaggio.meal
 
-import java.nio.charset.StandardCharsets
-
 import org.http4s.Uri
 import enumeratum._
-import fs2.{Chunk, Pipe, Pull}
 
 import scala.annotation.tailrec
 
@@ -65,8 +62,6 @@ final case class FeedEntry(title: String, link: String, description: String) {
 final case class Feed(channelEntry: FeedEntry, parsePattern: ParsePattern, entryTemplate: FeedEntry, pageSize: Option[Int] = None) {
   def parser[F[_]] = EntityParser[F](parsePattern)
   def formatter[F[_]] = EntryCreator[F](entryTemplate, channelEntry.uris.head)
-
-  //  lazy val formatter: Flow[EntryData, FeedEntry, Any] = Flow.fromFunction(new EntryCreator(entryTemplate, channelEntry.uris.head))
 }
 
 trait FeedList {
