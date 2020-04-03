@@ -1,8 +1,8 @@
 name := "meal"
 
-version := "0.1"
+version := "0.2"
 
-scalaVersion := "2.12.8"
+scalaVersion := "2.13.1"
 
 scalacOptions ++= Seq(
   "-encoding", "utf8",
@@ -12,26 +12,25 @@ scalacOptions ++= Seq(
   "-language:implicitConversions",
   "-language:higherKinds",
   "-language:existentials",
-  "-language:postfixOps",
-  "-Ypartial-unification"
+  "-language:postfixOps"
 )
 
-val http4sVersion = "0.20.3"
+val http4sVersion = "0.21.3"
 
-addCompilerPlugin("org.typelevel" %% "kind-projector" % "0.10.0")
+addCompilerPlugin("org.typelevel" %% "kind-projector" % "0.11.0" cross CrossVersion.full)
 
 libraryDependencies ++= Seq(
   "org.http4s" %% "http4s-dsl" % http4sVersion,
   "org.http4s" %% "http4s-blaze-server" % http4sVersion,
   "org.http4s" %% "http4s-blaze-client" % http4sVersion,
-  "com.beachape" %% "enumeratum" % "1.5.13",
-  "org.jsoup" % "jsoup" % "1.11.3",
-  "org.scala-lang.modules" %% "scala-xml" % "1.1.1",
-  "io.github.howardjohn" %% "http4s-lambda" % "0.4.0-SNAPSHOT"
+  "com.beachape" %% "enumeratum" % "1.5.15",
+  "org.jsoup" % "jsoup" % "1.13.1",
+  "org.scala-lang.modules" %% "scala-xml" % "2.0.0-M1",
+  "io.github.howardjohn" %% "http4s-lambda" % "0.4.1-SNAPSHOT"
 )
 
 libraryDependencies ++= Seq(
-  "com.lihaoyi" %% "utest" % "0.5.3"
+  "com.lihaoyi" %% "utest" % "0.7.2"
 ).map(_ % "test")
 
 testFrameworks += new TestFramework("utest.runner.Framework")

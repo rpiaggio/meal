@@ -17,7 +17,7 @@ object EntryCreator {
 
         FeedEntry(
           Jsoup.parse(replace(entryTemplate.title)).body.text,
-          Uri.fromString(replace(entryTemplate.link)).right.map(_.resolve(baseUri)).getOrElse(baseUri).toString,
+          Uri.fromString(replace(entryTemplate.link)).map(_.resolve(baseUri)).getOrElse(baseUri).toString,
           replace(entryTemplate.description)
         )
       }

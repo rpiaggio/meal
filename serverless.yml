@@ -8,7 +8,7 @@ provider:
   timeout: 20
 
 package:
-  artifact: target/scala-2.12/meal-assembly-0.1.jar
+  artifact: target/scala-2.13/meal-assembly-0.2.jar
 
 functions:
   api:

@@ -50,13 +50,14 @@ object ParsePattern {
 
 // TODO CONTEMPLATE URI PARSING FAILURE
 final case class FeedEntry(title: String, link: String, description: String) {
-  lazy val uris: Stream[Uri] =
+  lazy val uris: LazyList[Uri] =
     if (link.contains("$page"))
-      Stream(1 to PAGES_REQUEST: _*).map { page =>
-        Uri.fromString(link.replace("$page", page.toString)).right.get
+      LazyList(1 to PAGES_REQUEST: _*).map { page =>
+        val linkWithPage = link.replace("$page", page.toString)
+        Uri.fromString(linkWithPage).getOrElse(throw new Exception(s"Invalid URI [$linkWithPage]."))
       }
     else
-      Stream(Uri.fromString(link).right.get)
+      LazyList(Uri.fromString(link).getOrElse(throw new Exception(s"Invalid URI [$link].")))
 }
 
 final case class Feed(channelEntry: FeedEntry, parsePattern: ParsePattern, entryTemplate: FeedEntry, pageSize: Option[Int] = None) {

@@ -6,11 +6,13 @@ object TickAntel extends FeedList {
   private val parsePattern = ParsePattern(
     """<div class="item">{*}
       |href="{%}"{*}
-      |<p class="txt-upper txt-blue txt-bold">{%}</p>{*}
+      |<p class="txt-upper{*}>{%}</p>{*}
       |<span class="span-block">{%}</span>{*}
       |<p>{%}</p>{*}
       |</div>""".stripMargin
   )
+
+    // AGREGAR PAGINACION!
 
   private val entryTemplate = FeedEntry("{%3} - {%2}", "{%1}", "{%4}")
 

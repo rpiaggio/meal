@@ -24,7 +24,7 @@ object EntityParserTest extends TestSuite {
       .toList
 
   val tests = Tests {
-    'streamConvert - {
+    Symbol("streamConvert") - {
       assert(converted == List(List("HOLA!"), List(">>:)<<OSO")))
     }
   }
