@@ -10,7 +10,7 @@ object RssRenderer {
         "<rss version=\"2.0\">\n" +
         "<channel>\n" +
         <title>{channelEntry.title}</title>.toString +
-        <link>{channelEntry.link}</link>.toString +
+        <link>{channelEntry.uri}</link>.toString +
         <description>{channelEntry.description}</description>.toString + "\n"
     )
 
@@ -19,7 +19,7 @@ object RssRenderer {
       val node =
         <item>
           <title>{entry.title}</title>
-          <link>{entry.link}</link>
+          <link>{entry.uri}</link>
           <description>{entry.description}</description>
         </item>
 

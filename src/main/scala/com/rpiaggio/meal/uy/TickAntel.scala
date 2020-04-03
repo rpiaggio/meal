@@ -1,6 +1,8 @@
 package com.rpiaggio.meal.uy
 
 import com.rpiaggio.meal._
+import org.http4s.Uri
+import org.http4s.implicits._
 
 object TickAntel extends FeedList {
   private val parsePattern = ParsePattern(
@@ -14,13 +16,17 @@ object TickAntel extends FeedList {
 
     // AGREGAR PAGINACION!
 
-  private val entryTemplate = FeedEntry("{%3} - {%2}", "{%1}", "{%4}")
+  private val entryTemplate = EntryTemplate("{%3} - {%2}", "{%1}", "{%4}")
 
-  private def buildFeed(title: String, url: String) =
-    Feed(FeedEntry(title, url, title), parsePattern, entryTemplate)
+  private val baseUri: Uri = uri"https://tickantel.com.uy/inicio/buscar_categoria"
+
+  private def buildFeed(title: String, category: String) = {
+    val uri = baseUri.withQueryParam("cat_id", category)
+    Feed(Page.single(uri), FeedEntry(title, uri, title), parsePattern, entryTemplate)
+  }
 
   val feeds = Map(
-    "tickantel-musica" -> buildFeed("TickAntel Música", "https://tickantel.com.uy/inicio/buscar_categoria?cat_id=1"),
-    "tickantel-teatro" -> buildFeed("TickAntel Teatro", "https://tickantel.com.uy/inicio/buscar_categoria?cat_id=2")
+    "tickantel-musica" -> buildFeed("TickAntel Música", "1"),
+    "tickantel-teatro" -> buildFeed("TickAntel Teatro", "2")
   )
 }

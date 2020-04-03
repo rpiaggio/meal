@@ -8,7 +8,7 @@ object EntryCreator {
 
   private val parameterPattern = "\\{%(\\d+)\\}".r
 
-  def apply[F[_]](entryTemplate: FeedEntry, baseUri: Uri): Pipe[F, EntryData, FeedEntry] = {
+  def apply[F[_]](entryTemplate: EntryTemplate, baseUri: Uri): Pipe[F, EntryData, FeedEntry] = {
     in =>
       in.map { seq =>
         def replace(template: String): String = {
@@ -17,7 +17,7 @@ object EntryCreator {
 
         FeedEntry(
           Jsoup.parse(replace(entryTemplate.title)).body.text,
-          Uri.fromString(replace(entryTemplate.link)).map(_.resolve(baseUri)).getOrElse(baseUri).toString,
+          Uri.fromString(replace(entryTemplate.link)).map(baseUri.resolve).getOrElse(baseUri).toString,
           replace(entryTemplate.description)
         )
       }

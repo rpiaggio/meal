@@ -48,21 +48,23 @@ object ParsePattern {
   }
 }
 
-// TODO CONTEMPLATE URI PARSING FAILURE
-final case class FeedEntry(title: String, link: String, description: String) {
-  lazy val uris: LazyList[Uri] =
-    if (link.contains("$page"))
-      LazyList(1 to PAGES_REQUEST: _*).map { page =>
-        val linkWithPage = link.replace("$page", page.toString)
-        Uri.fromString(linkWithPage).getOrElse(throw new Exception(s"Invalid URI [$linkWithPage]."))
-      }
-    else
-      LazyList(Uri.fromString(link).getOrElse(throw new Exception(s"Invalid URI [$link].")))
+final case class FeedEntry(title: String, uri: Uri, description: String)
+object FeedEntry {
+  def apply(title: String, link: String, description: String): FeedEntry =
+    FeedEntry(title, Uri.unsafeFromString(link), description)
 }
 
-final case class Feed(channelEntry: FeedEntry, parsePattern: ParsePattern, entryTemplate: FeedEntry, pageSize: Option[Int] = None) {
+final case class EntryTemplate(title: String, link: String, description: String)
+
+final case class Feed(
+                       uriBuilder: UriBuilder,
+                       channelEntry: FeedEntry,
+                       parsePattern: ParsePattern,
+                       entryTemplate: EntryTemplate,
+                       pageSize: Option[Int] = None
+) {
   def parser[F[_]] = EntityParser[F](parsePattern)
-  def formatter[F[_]] = EntryCreator[F](entryTemplate, channelEntry.uris.head)
+  def formatter[F[_]] = EntryCreator[F](entryTemplate, channelEntry.uri)
 }
 
 trait FeedList {

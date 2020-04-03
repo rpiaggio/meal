@@ -1,22 +1,21 @@
 package com.rpiaggio.meal
 
+import cats.implicits._
 import cats.effect.ConcurrentEffect
 import fs2.{Pull, Stream}
 
 class FeedBuilder[F[_] : ConcurrentEffect] {
   private val client = new HttpClient[F]
 
-  private def pageStream(feed: Feed, page: Option[Int] = None): Stream[F, FeedEntry] = {
-    val url = feed.channelEntry.link
-
-    client.stream(page.fold(url)(p => url.replace("$page", p.toString)))
-      .through(feed.parser)
-      .through(feed.formatter)
+  private def pageStream(feed: Feed, page: Option[Page] = None): Stream[F, FeedEntry] = {
+    client.stream(feed.uriBuilder(page.orEmpty))//.debug()
+      .through(feed.parser)//.debug()
+      .through(feed.formatter)//.debug()
   }
 
   private def concatPages(feed: Feed)(pageSize: Int): Stream[F, FeedEntry] = {
 
-    def processPage(page: Int): Pull[F, FeedEntry, Unit] = {
+    def processPage(page: Page): Pull[F, FeedEntry, Unit] = {
 
       def go(s: Stream[F, FeedEntry], remainingEntries: Int): Pull[F, FeedEntry, Unit] = {
         s.pull.uncons.flatMap {
