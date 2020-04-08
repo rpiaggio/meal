@@ -12,7 +12,7 @@ object EntryCreator {
     in =>
       in.map { seq =>
         def replace(template: String): String = {
-          parameterPattern.replaceAllIn(template, mtch => seq(mtch.group(1).toInt - 1).trim)
+          parameterPattern.replaceAllIn(template, mtch => seq(mtch.group(1).toInt - 1).trim.replaceAll("""\\""", """\\\\"""))
         }
 
         FeedEntry(

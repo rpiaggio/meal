@@ -17,7 +17,7 @@ class HttpClient[F[_]](implicit F: ConcurrentEffect[F]) {
     val request = Request[F](uri = uri)
     for {
       client <- client.stream
-      res <- FollowRedirect(MAX_REDIR_COUNT, _ => false)(client).stream(request).flatMap(_.body.chunks.through(fs2.text.utf8DecodeC))
+      res <- FollowRedirect(MaxRedirCount, _ => false)(client).stream(request).flatMap(_.body.chunks.through(fs2.text.utf8DecodeC))
     } yield res
   }
 }

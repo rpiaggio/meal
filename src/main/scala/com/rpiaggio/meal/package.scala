@@ -18,9 +18,10 @@ package object meal {
 
     def asQueryParam(uri: Uri, key: String = "page"): UriBuilder =
       page => uri.withQueryParam(key, page)
+
+    def asQueryParamsRange(uri: Uri, itemsPerPage: Int, fromKey: String = "from", countKey: String = "count"): UriBuilder =
+      page => uri.withQueryParam(fromKey, (page - 1) * itemsPerPage).withQueryParam(countKey, itemsPerPage)
   }
 
-  protected[meal] val PAGES_REQUEST = 10
-
-  protected[meal] val MAX_REDIR_COUNT = 20
+  protected[meal] val MaxRedirCount = 20
 }
