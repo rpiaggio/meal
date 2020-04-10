@@ -26,3 +26,7 @@ project/metals.sbt
 ._.DS_Store
 **/.DS_Store
 **/._.DS_Store
+
+# Serverless
+serverless-state.json
+cloudformation*.json

@@ -12,7 +12,7 @@ package:
 
 functions:
   api:
-    handler: com.rpiaggio.meal.WebServer$EntryPoint::handle
+    handler: com.rpiaggio.meal.Main$EntryPoint::handle
     events:
       - http:
           path: "{proxy+}"
