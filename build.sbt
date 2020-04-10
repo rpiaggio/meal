@@ -4,8 +4,11 @@ version := "0.2"
 
 scalaVersion := "2.13.1"
 
+Global / onChangedBuildSource := ReloadOnSourceChanges
+
 scalacOptions ++= Seq(
-  "-encoding", "utf8",
+  "-encoding",
+  "utf8",
   "-Xfatal-warnings",
   "-deprecation",
   "-unchecked",
@@ -17,7 +20,9 @@ scalacOptions ++= Seq(
 
 val http4sVersion = "0.21.3"
 
-addCompilerPlugin("org.typelevel" %% "kind-projector" % "0.11.0" cross CrossVersion.full)
+addCompilerPlugin(
+  "org.typelevel" %% "kind-projector" % "0.11.0" cross CrossVersion.full
+)
 
 libraryDependencies ++= Seq(
   "org.http4s" %% "http4s-dsl" % http4sVersion,

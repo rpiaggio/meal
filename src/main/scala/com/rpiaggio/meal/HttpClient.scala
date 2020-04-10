@@ -12,12 +12,14 @@ class HttpClient[F[_]](implicit F: ConcurrentEffect[F]) {
   private val client = BlazeClientBuilder(global)
 
   def stream(uri: Uri): Stream[F, String] = {
-    println(s"FETCHING [$uri]")
+    //println(s"FETCHING [$uri]")
 
     val request = Request[F](uri = uri)
     for {
       client <- client.stream
-      res <- FollowRedirect(MaxRedirCount, _ => false)(client).stream(request).flatMap(_.body.chunks.through(fs2.text.utf8DecodeC))
+      res <- FollowRedirect(MaxRedirCount, _ => false)(client)
+        .stream(request)
+        .flatMap(_.body.chunks.through(fs2.text.utf8DecodeC))
     } yield res
   }
 }

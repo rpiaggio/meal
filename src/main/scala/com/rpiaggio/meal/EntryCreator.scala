@@ -6,20 +6,19 @@ import org.jsoup.Jsoup
 
 object EntryCreator {
 
-  private val parameterPattern = "\\{%(\\d+)\\}".r
-
-  def apply[F[_]](entryTemplate: EntryTemplate, baseUri: Uri): Pipe[F, EntryData, FeedEntry] = {
-    in =>
-      in.map { seq =>
-        def replace(template: String): String = {
-          parameterPattern.replaceAllIn(template, mtch => seq(mtch.group(1).toInt - 1).trim.replaceAll("""\\""", """\\\\"""))
-        }
-
-        FeedEntry(
-          Jsoup.parse(replace(entryTemplate.title)).body.text,
-          Uri.fromString(replace(entryTemplate.link)).map(baseUri.resolve).getOrElse(baseUri).toString,
-          replace(entryTemplate.description)
-        )
-      }
+  def apply[F[_]](
+      entryTemplate: EntryTemplate,
+      baseUri: Uri
+  ): Pipe[F, EntryData, FeedEntry] = { in =>
+    in.map { entryData =>
+      FeedEntry(
+        Jsoup.parse(entryTemplate.title(entryData)).body.text,
+        Uri
+          .fromString(entryTemplate.link(entryData))
+          .map(baseUri.resolve)
+          .getOrElse(baseUri),
+        entryTemplate.description(entryData)
+      )
+    }
   }
 }
