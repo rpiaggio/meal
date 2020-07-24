@@ -30,3 +30,6 @@ project/metals.sbt
 # Serverless
 serverless-state.json
 cloudformation*.json
+
+#Hydra
+.hydra/

@@ -5,6 +5,7 @@ import cats.implicits._
 import io.github.howardjohn.lambda.http4s.Http4sLambdaHandler
 
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.ExecutionContext
 
 object Main extends IOApp {
   implicit val cs: ContextShift[IO] = IO.contextShift(global)
@@ -21,7 +22,7 @@ object Main extends IOApp {
     println("Valid feeds:")
     AllFeeds.feeds.keys.toSeq.sorted.foreach(key => println(s"* $key"))
 
-    server.build.as(ExitCode.Success)
+    server.build(implicitly[ExecutionContext]).as(ExitCode.Success)
   }
 
   class EntryPoint extends Http4sLambdaHandler(server.service)

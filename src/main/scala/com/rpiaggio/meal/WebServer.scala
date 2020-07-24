@@ -8,6 +8,7 @@ import org.http4s.implicits._
 import org.http4s.server.blaze._
 import org.http4s.server.Router
 import org.http4s.headers.`Content-Type`
+import scala.concurrent.ExecutionContext
 
 class WebServer[F[_]: ConcurrentEffect: Timer](
     feeds: Map[String, Feed],
@@ -44,8 +45,8 @@ class WebServer[F[_]: ConcurrentEffect: Timer](
         )
   }
 
-  def build: F[Unit] =
-    BlazeServerBuilder[F]
+  def build(ec: ExecutionContext): F[Unit] =
+    BlazeServerBuilder[F](ec)
       .bindHttp(port, host)
       .withHttpApp(Router("/" -> service).orNotFound)
       .serve
