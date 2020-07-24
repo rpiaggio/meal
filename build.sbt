@@ -35,7 +35,7 @@ libraryDependencies ++= Seq(
 )
 
 libraryDependencies ++= Seq(
-  "com.lihaoyi" %% "utest" % "0.7.2"
+  "com.lihaoyi" %% "utest" % "0.7.4"
 ).map(_ % "test")
 
 testFrameworks += new TestFramework("utest.runner.Framework")
