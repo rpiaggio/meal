@@ -18,7 +18,7 @@ scalacOptions ++= Seq(
   "-language:postfixOps"
 )
 
-val http4sVersion = "0.21.8"
+val http4sVersion = "0.21.12"
 
 addCompilerPlugin(
   "org.typelevel" %% "kind-projector" % "0.11.0" cross CrossVersion.full
