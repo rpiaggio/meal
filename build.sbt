@@ -2,7 +2,7 @@ name := "meal"
 
 version := "0.2"
 
-scalaVersion := "2.13.1"
+scalaVersion := "2.13.5"
 
 Global / onChangedBuildSource := ReloadOnSourceChanges
 
