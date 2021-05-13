@@ -21,7 +21,7 @@ scalacOptions ++= Seq(
 val http4sVersion = "0.21.19"
 
 addCompilerPlugin(
-  "org.typelevel" %% "kind-projector" % "0.11.3" cross CrossVersion.full
+  "org.typelevel" %% "kind-projector" % "0.12.0" cross CrossVersion.full
 )
 
 libraryDependencies ++= Seq(
