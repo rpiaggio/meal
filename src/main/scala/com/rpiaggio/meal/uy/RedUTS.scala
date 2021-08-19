@@ -16,13 +16,20 @@ object RedUTS extends FeedList {
       |</article>""".stripMargin
   )
 
-  private val entryTemplate = EntryTemplate("{%3} - {%2} - {%5}", "{%1}", "{%6}<br/>{%4}")
+  private val entryTemplate =
+    EntryTemplate("{%3} - {%2} - {%5}", "{%1}", "{%6}<br/>{%4}")
 
-  private val baseUri: Uri = uri"https://reduts.com.uy/categoria/?posts_per_page=100"
+  private val baseUri: Uri =
+    uri"https://reduts.com.uy/categoria/?posts_per_page=100"
 
   private def buildFeed(title: String, category: String) = {
     val uri = baseUri / category
-    Feed(Page.single(uri), FeedEntry(title, uri, title), parsePattern, entryTemplate)
+    Feed(
+      Page.single(uri),
+      FeedEntry(title, uri, title),
+      parsePattern,
+      entryTemplate
+    )
   }
 
   val feeds = Map(
