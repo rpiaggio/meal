@@ -21,16 +21,15 @@ object ParseAction extends Enum[ParseAction] {
 final case class ParseUntil(action: ParseAction, str: String) {
   // Compute Knuth-Morris-Pratt π function for given string.
   lazy val pi: Vector[Int] = {
-    (1 until str.length).foldLeft(Vector(0)) {
-      case (pi, q) =>
-        @tailrec
-        def nextK(k: Int): Int =
-          if (k > 0 && str(k) != str(q))
-            nextK(pi(k))
-          else if (str(k) == str(q)) k + 1
-          else k
+    (1 until str.length).foldLeft(Vector(0)) { case (pi, q) =>
+      @tailrec
+      def nextK(k: Int): Int =
+        if (k > 0 && str(k) != str(q))
+          nextK(pi(k))
+        else if (str(k) == str(q)) k + 1
+        else k
 
-        pi :+ nextK(pi.last)
+      pi :+ nextK(pi.last)
     }
   }
 }
@@ -49,9 +48,8 @@ object ParsePattern {
       .split(fakeSeparator)
     val instructions = tokens.tail
       .grouped(2)
-      .collect {
-        case Array(actionStr, until) =>
-          ParseUntil(ParseAction.withRepresentation(actionStr), until)
+      .collect { case Array(actionStr, until) =>
+        ParseUntil(ParseAction.withRepresentation(actionStr), until)
       }
       .toList
     ParsePattern(ParseUntil(ParseAction.Ignore, tokens.head) +: instructions)

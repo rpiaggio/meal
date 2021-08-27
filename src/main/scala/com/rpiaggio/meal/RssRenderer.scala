@@ -15,22 +15,27 @@ object RssRenderer {
     )
 
   private def bodyRenderer[F[_]]: Pipe[F, FeedEntry, String] =
-    in => in.map { entry =>
-      val node =
-        <item>
+    in =>
+      in.map { entry =>
+        val node =
+          <item>
           <title>{entry.title}</title>
           <link>{entry.uri}</link>
           <description>{entry.description}</description>
         </item>
 
-      node.toString + "\n"
-    }
+        node.toString + "\n"
+      }
 
   private def suffix[F[_]]: Stream[F, String] = Stream.emit(
     "</channel>\n" +
       "</rss>"
   )
 
-  def apply[F[_]](channelEntry: FeedEntry, bodyStream: Stream[F, FeedEntry]): Stream[F, Chunk[Byte]] =
-    (prefix[F](channelEntry) ++ bodyStream.through(bodyRenderer[F]) ++ suffix[F]).through(fs2.text.utf8EncodeC)
+  def apply[F[_]](
+      channelEntry: FeedEntry,
+      bodyStream: Stream[F, FeedEntry]
+  ): Stream[F, Chunk[Byte]] =
+    (prefix[F](channelEntry) ++ bodyStream
+      .through(bodyRenderer[F]) ++ suffix[F]).through(fs2.text.utf8EncodeC)
 }
