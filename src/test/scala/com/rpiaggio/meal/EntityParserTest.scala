@@ -9,11 +9,37 @@ object EntityParserTest extends TestSuite {
   import fs2._
   //  import scala.concurrent.duration._
 
-
-  val pattern = ParsePattern(List(ParseUntil(ParseAction.Ignore, ">>>"), ParseUntil(ParseAction.Capture, "<<<")))
+  val pattern = ParsePattern(
+    List(
+      ParseUntil(ParseAction.Ignore, ">>>"),
+      ParseUntil(ParseAction.Capture, "<<<")
+    )
+  )
   val parser = EntityParser[Id](pattern)
 
-  val stream = Stream.emits[Id, String](List("1", "x2f", "e z", ">>", ">HO", "LA!", "<", "<<", "je", ">", ">", ">", ">", ">", ":", ")", "<", "<", "OSO<<<")) //.metered(1.seconds)
+  val stream = Stream.emits[Id, String](
+    List(
+      "1",
+      "x2f",
+      "e z",
+      ">>",
+      ">HO",
+      "LA!",
+      "<",
+      "<<",
+      "je",
+      ">",
+      ">",
+      ">",
+      ">",
+      ">",
+      ":",
+      ")",
+      "<",
+      "<",
+      "OSO<<<"
+    )
+  ) //.metered(1.seconds)
 
   val converted =
     stream
