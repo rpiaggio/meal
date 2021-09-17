@@ -33,16 +33,15 @@ class WebServer[F[_]: ConcurrentEffect: Timer](
         }
     )
 
-  val service: HttpRoutes[F] = HttpRoutes.of[F] {
-    case GET -> Root / feedName =>
-      feeds
-        .get(feedName)
-        .fold(NotFound("Invalid feed name."))(feed =>
-          Ok(
-            render(feed),
-            `Content-Type`(MediaType.application.`rss+xml`, Charset.`UTF-8`)
-          )
+  val service: HttpRoutes[F] = HttpRoutes.of[F] { case GET -> Root / feedName =>
+    feeds
+      .get(feedName)
+      .fold(NotFound("Invalid feed name."))(feed =>
+        Ok(
+          render(feed),
+          `Content-Type`(MediaType.application.`rss+xml`, Charset.`UTF-8`)
         )
+      )
   }
 
   def build(ec: ExecutionContext): F[Unit] =
