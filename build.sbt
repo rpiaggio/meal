@@ -18,10 +18,10 @@ scalacOptions ++= Seq(
   "-language:postfixOps"
 )
 
-val http4sVersion = "0.21.25"
+val http4sVersion = "0.23.1"
 
 addCompilerPlugin(
-  "org.typelevel" %% "kind-projector" % "0.13.0" cross CrossVersion.full
+  "org.typelevel" %% "kind-projector" % "0.13.2" cross CrossVersion.full
 )
 
 libraryDependencies ++= Seq(
@@ -29,7 +29,7 @@ libraryDependencies ++= Seq(
   "org.http4s" %% "http4s-blaze-server" % http4sVersion,
   "org.http4s" %% "http4s-blaze-client" % http4sVersion,
   "com.beachape" %% "enumeratum" % "1.7.0",
-  "org.jsoup" % "jsoup" % "1.14.1",
+  "org.jsoup" % "jsoup" % "1.14.2",
   "org.scala-lang.modules" %% "scala-xml" % "2.0.1",
   "io.github.howardjohn" %% "http4s-lambda" % "0.4.1-SNAPSHOT"
 )
