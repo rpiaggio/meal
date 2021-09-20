@@ -31,7 +31,7 @@ libraryDependencies ++= Seq(
   "com.beachape" %% "enumeratum" % "1.7.0",
   "org.jsoup" % "jsoup" % "1.14.2",
   "org.scala-lang.modules" %% "scala-xml" % "2.0.1",
-  "io.github.howardjohn" %% "http4s-lambda" % "0.4.1-SNAPSHOT"
+  "io.github.howardjohn" %% "http4s-lambda" % "0.4.2-SNAPSHOT"
 )
 
 libraryDependencies ++= Seq(

@@ -1,10 +1,10 @@
 package com.rpiaggio.meal
 
+import cats.effect.Async
 import cats.implicits._
-import cats.effect.ConcurrentEffect
 import fs2.{Pull, Stream}
 
-class FeedBuilder[F[_]: ConcurrentEffect] {
+class FeedBuilder[F[_]: Async] {
   private val client = new HttpClient[F]
 
   private def pageStream(
