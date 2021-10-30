@@ -39,7 +39,7 @@ object EntityParserTest extends TestSuite {
       "<",
       "OSO<<<"
     )
-  ) //.metered(1.seconds)
+  ) // .metered(1.seconds)
 
   val converted =
     stream
