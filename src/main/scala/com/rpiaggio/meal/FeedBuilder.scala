@@ -12,9 +12,9 @@ class FeedBuilder[F[_]: ConcurrentEffect] {
       page: Option[Page] = None
   ): Stream[F, FeedEntry] = {
     client
-      .stream(feed.uriBuilder(page.orEmpty)) //.debug()
-      .through(feed.parser) //.debug()
-      .through(feed.formatter) //.debug()
+      .stream(feed.uriBuilder(page.orEmpty)) // .debug()
+      .through(feed.parser) // .debug()
+      .through(feed.formatter) // .debug()
   }
 
   private def concatPages(feed: Feed)(pageSize: Int): Stream[F, FeedEntry] = {

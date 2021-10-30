@@ -22,7 +22,7 @@ object TickAntel extends FeedList {
 
   private val ItemsPerPage: Int = 20
 
-  /// TODO Resolver link de evento (y de categoria?)
+  // / TODO Resolver link de evento (y de categoria?)
 
   private val dtf = DateTimeFormatter.ofPattern(
     "dd 'de' MMMM (eeee)",
