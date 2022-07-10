@@ -29,7 +29,7 @@ libraryDependencies ++= Seq(
   "org.http4s" %% "http4s-blaze-server" % http4sVersion,
   "org.http4s" %% "http4s-blaze-client" % http4sVersion,
   "com.beachape" %% "enumeratum" % "1.7.0",
-  "org.jsoup" % "jsoup" % "1.14.3",
+  "org.jsoup" % "jsoup" % "1.15.2",
   "org.scala-lang.modules" %% "scala-xml" % "2.0.1",
   "io.github.howardjohn" %% "http4s-lambda" % "0.4.1-SNAPSHOT"
 )
