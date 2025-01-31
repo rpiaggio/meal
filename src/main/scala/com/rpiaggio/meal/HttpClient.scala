@@ -10,7 +10,7 @@ class HttpClient[F[_]](implicit F: Async[F]) {
   private val client = BlazeClientBuilder[F]
 
   def stream(uri: Uri): Stream[F, String] = {
-    //println(s"FETCHING [$uri]")
+    // println(s"FETCHING [$uri]")
 
     val request = Request[F](uri = uri)
     for {
