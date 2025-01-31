@@ -9,6 +9,7 @@ import org.http4s.server.blaze._
 import org.http4s.server.Router
 import org.http4s.headers.`Content-Type`
 import scala.concurrent.ExecutionContext
+import org.http4s.blaze.server.BlazeServerBuilder
 
 class WebServer[F[_]: Async](
     feeds: Map[String, Feed],
@@ -44,8 +45,8 @@ class WebServer[F[_]: Async](
       )
   }
 
-  def build(ec: ExecutionContext): F[Unit] =
-    BlazeServerBuilder[F](ec)
+  val build: F[Unit] =
+    BlazeServerBuilder[F]
       .bindHttp(port, host)
       .withHttpApp(Router("/" -> service).orNotFound)
       .serve

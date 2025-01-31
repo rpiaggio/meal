@@ -3,13 +3,11 @@ package com.rpiaggio.meal
 import cats.effect.Async
 import fs2.Stream
 import org.http4s.{Request, Uri}
-import org.http4s.client.blaze.BlazeClientBuilder
 import org.http4s.client.middleware.FollowRedirect
-
-import scala.concurrent.ExecutionContext.Implicits.global
+import org.http4s.blaze.client.BlazeClientBuilder
 
 class HttpClient[F[_]](implicit F: Async[F]) {
-  private val client = BlazeClientBuilder(global)
+  private val client = BlazeClientBuilder[F]
 
   def stream(uri: Uri): Stream[F, String] = {
     //println(s"FETCHING [$uri]")
@@ -19,7 +17,7 @@ class HttpClient[F[_]](implicit F: Async[F]) {
       client <- client.stream
       res <- FollowRedirect(MaxRedirCount, _ => false)(client)
         .stream(request)
-        .flatMap(_.body.chunks.through(fs2.text.utf8DecodeC))
+        .flatMap(_.body.chunks.through(fs2.text.utf8.decodeC))
     } yield res
   }
 }

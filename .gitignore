@@ -33,3 +33,6 @@ cloudformation*.json
 
 #Hydra
 .hydra/
+
+.bsp
+.direnv

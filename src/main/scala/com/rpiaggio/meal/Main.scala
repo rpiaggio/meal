@@ -18,7 +18,7 @@ object Main extends IOApp {
     println("Valid feeds:")
     AllFeeds.feeds.keys.toSeq.sorted.foreach(key => println(s"* $key"))
 
-    server.build(implicitly[ExecutionContext]).as(ExitCode.Success)
+    server.build.as(ExitCode.Success)
   }
 
   class EntryPoint extends Http4sLambdaHandler(server.service)

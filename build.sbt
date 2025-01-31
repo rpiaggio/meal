@@ -9,7 +9,7 @@ Global / onChangedBuildSource := ReloadOnSourceChanges
 scalacOptions ++= Seq(
   "-encoding",
   "utf8",
-  // "-Xfatal-warnings",
+  "-Xfatal-warnings",
   "-deprecation",
   "-unchecked",
   "-language:implicitConversions",

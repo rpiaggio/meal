@@ -37,5 +37,5 @@ object RssRenderer {
       bodyStream: Stream[F, FeedEntry]
   ): Stream[F, Chunk[Byte]] =
     (prefix[F](channelEntry) ++ bodyStream
-      .through(bodyRenderer[F]) ++ suffix[F]).through(fs2.text.utf8EncodeC)
+      .through(bodyRenderer[F]) ++ suffix[F]).through(fs2.text.utf8.encodeC)
 }

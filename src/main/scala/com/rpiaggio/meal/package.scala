@@ -40,7 +40,12 @@ package object meal {
       _ => uri
 
     def inPath(uri: Uri, pattern: String = "$page"): UriBuilder =
-      page => uri.withPath(uri.path.toString.replace(pattern, page.toString))
+      page =>
+        uri.withPath(
+          Uri.Path.unsafeFromString(
+            uri.path.toString.replace(pattern, page.toString)
+          )
+        )
 
     def asQueryParam(uri: Uri, key: String = "page"): UriBuilder =
       page => uri.withQueryParam(key, page)
