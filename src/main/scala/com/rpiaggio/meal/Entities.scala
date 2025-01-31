@@ -1,27 +1,21 @@
 package com.rpiaggio.meal
 
 import org.http4s.Uri
-import enumeratum._
 
 import scala.annotation.tailrec
 
-sealed abstract class ParseAction(val representation: String) extends EnumEntry
+enum ParseAction(val representation: String):
+  case Capture extends ParseAction("%")
+  case Ignore extends ParseAction("*")
 
-object ParseAction extends Enum[ParseAction] {
-  override def values = findValues
-
-  final case object Capture extends ParseAction("%")
-
-  final case object Ignore extends ParseAction("*")
-
+object ParseAction:
   lazy val withRepresentation: Map[String, ParseAction] =
     values.map(action => action.representation -> action).toMap
-}
 
-final case class ParseUntil(action: ParseAction, str: String) {
+case class ParseUntil(action: ParseAction, str: String) {
   // Compute Knuth-Morris-Pratt π function for given string.
   lazy val pi: Vector[Int] = {
-    (1 until str.length).foldLeft(Vector(0)) { case (pi, q) =>
+    (1.until(str.length)).foldLeft(Vector(0)) { case (pi, q) =>
       @tailrec
       def nextK(k: Int): Int =
         if (k > 0 && str(k) != str(q))
@@ -34,7 +28,7 @@ final case class ParseUntil(action: ParseAction, str: String) {
   }
 }
 
-final case class ParsePattern(instructions: List[ParseUntil])
+case class ParsePattern(instructions: List[ParseUntil])
 
 object ParsePattern {
   private val fakeSeparator = "<!!!!>"

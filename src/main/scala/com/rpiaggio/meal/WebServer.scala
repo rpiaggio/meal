@@ -1,6 +1,6 @@
 package com.rpiaggio.meal
 
-import cats.effect.{ConcurrentEffect, Timer}
+import cats.effect.Async
 import fs2._
 import org.http4s._
 import org.http4s.dsl.Http4sDsl
@@ -10,7 +10,7 @@ import org.http4s.server.Router
 import org.http4s.headers.`Content-Type`
 import scala.concurrent.ExecutionContext
 
-class WebServer[F[_]: ConcurrentEffect: Timer](
+class WebServer[F[_]: Async](
     feeds: Map[String, Feed],
     host: String,
     port: Int

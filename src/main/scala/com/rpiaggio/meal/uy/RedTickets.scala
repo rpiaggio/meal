@@ -18,7 +18,7 @@ object RedTickets extends FeedList {
   private val baseUri: Uri = uri"https://redtickets.uy/busqueda"
 
   private def buildFeed(title: String, category: String) = {
-    val uri = baseUri.withPath(baseUri.path + s"?*,$category,0")
+    val uri = baseUri.withPath(baseUri.path.toString + s"?*,$category,0")
     Feed(
       Page.single(uri),
       FeedEntry(title, uri, title),

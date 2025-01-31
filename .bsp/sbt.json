@@ -1,0 +1,1 @@
+{"name":"sbt","version":"1.5.5","bspVersion":"2.0.0-M5","languages":["scala"],"argv":["/nix/store/hgm0854hs4vks6h8qkhgl62m2f0ysk6k-zulu-ca-jdk-17.0.12/zulu-17.jdk/Contents/Home/bin/java","-Xms100m","-Xmx100m","-classpath","/Users/raul.piaggio/apex/meal/.bsp/sbt-launch.jar","xsbt.boot.Boot","-bsp","--sbt-launch-jar=/Users/raul.piaggio/apex/meal/.bsp/sbt-launch.jar"]}

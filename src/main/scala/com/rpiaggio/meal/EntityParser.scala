@@ -140,7 +140,7 @@ object EntityParser {
               parseStr(mapState)
             }
 
-          Pull.output(outs.flatMap(entries => Chunk(entries: _*))) >> go(
+          Pull.output(outs.flatMap(entries => Chunk(entries *))) >> go(
             tail,
             newState
           )

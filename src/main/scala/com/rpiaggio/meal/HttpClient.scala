@@ -1,6 +1,6 @@
 package com.rpiaggio.meal
 
-import cats.effect.ConcurrentEffect
+import cats.effect.Async
 import fs2.Stream
 import org.http4s.{Request, Uri}
 import org.http4s.client.blaze.BlazeClientBuilder
@@ -8,7 +8,7 @@ import org.http4s.client.middleware.FollowRedirect
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
-class HttpClient[F[_]](implicit F: ConcurrentEffect[F]) {
+class HttpClient[F[_]](implicit F: Async[F]) {
   private val client = BlazeClientBuilder(global)
 
   def stream(uri: Uri): Stream[F, String] = {
