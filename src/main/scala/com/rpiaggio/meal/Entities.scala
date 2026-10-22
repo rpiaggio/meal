@@ -1,6 +1,8 @@
 package com.rpiaggio.meal
 
-import org.http4s.Uri
+import fs2.{Pure, Stream}
+import org.http4s.{Headers, Uri}
+import org.jsoup.parser.Parser
 
 import scala.annotation.tailrec
 
@@ -63,10 +65,34 @@ final case class Feed(
     channelEntry: FeedEntry,
     parsePattern: ParsePattern,
     entryTemplate: EntryTemplate,
-    pageSize: Option[Int] = None
+    pageSize: Option[Int] = None,
+    followPages: Option[FollowPages] = None
 ) {
   def parser[F[_]] = EntityParser[F](parsePattern)
   def formatter[F[_]] = EntryCreator[F](entryTemplate, channelEntry.uri)
+
+  // For when the whole page is needed more than once (eg: entries and next link).
+  def entries(body: String): List[FeedEntry] =
+    Stream.emit(body).through(parser[Pure]).through(formatter[Pure]).toList
+}
+
+// Keeps requesting the link captured by `nextPattern` (first capture of first match) until a page
+// has no next link or no new entries. Requests share a session, so cookies carry over between pages.
+// Entries are deduplicated by link, so pages that repeat earlier results (eg: "load more" responses
+// re-rendering the whole list) are handled too.
+final case class FollowPages(
+    nextPattern: ParsePattern,
+    headers: Headers = Headers.empty
+) {
+  def nextUri(body: String, current: Uri): Option[Uri] =
+    Stream
+      .emit(body)
+      .through(EntityParser[Pure](nextPattern))
+      .toList
+      .flatMap(_.headOption)
+      .headOption
+      .flatMap(link => Uri.fromString(Parser.unescapeEntities(link.trim, false)).toOption)
+      .map(current.resolve)
 }
 
 trait FeedList {

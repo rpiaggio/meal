@@ -64,5 +64,7 @@ package object meal {
 
   protected[meal] val MaxRedirCount = 20
 
+  protected[meal] val MaxFollowedPages = 100
+
   protected[meal] val Timezone = ZoneId.of("America/Montevideo")
 }

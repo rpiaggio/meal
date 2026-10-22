@@ -2,14 +2,16 @@ package com.rpiaggio.meal
 
 import cats.effect._
 import cats.implicits._
-import io.github.howardjohn.lambda.http4s.Http4sLambdaHandler
+import feral.lambda.{ApiGatewayProxyInvocation, IOLambda}
+import feral.lambda.events.{ApiGatewayProxyEvent, ApiGatewayProxyResult}
+import feral.lambda.http4s.ApiGatewayProxyHandler
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.ExecutionContext
 
 object Main extends IOApp {
   private val host = "localhost"
-  private val port = 8080
+  private val port = 8081
 
   private val server = new WebServer[IO](AllFeeds.feeds, host, port)
 
@@ -21,5 +23,11 @@ object Main extends IOApp {
     server.build.as(ExitCode.Success)
   }
 
-  class EntryPoint extends Http4sLambdaHandler(server.service)
+  // serverless.yml uses REST API (`http`) events, which send v1 proxy payloads.
+  class EntryPoint extends IOLambda[ApiGatewayProxyEvent, ApiGatewayProxyResult] {
+    def handler =
+      Resource.pure[IO, ApiGatewayProxyInvocation[IO] => IO[Option[ApiGatewayProxyResult]]] {
+        implicit inv => ApiGatewayProxyHandler(server.service.orNotFound)
+      }
+  }
 }

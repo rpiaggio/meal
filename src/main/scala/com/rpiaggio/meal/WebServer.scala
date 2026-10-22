@@ -15,7 +15,7 @@ class WebServer[F[_]: Async](
     feeds: Map[String, Feed],
     host: String,
     port: Int
-) extends FeedBuilder[F]
+) extends FeedBuilder[F](new HttpClient[F])
     with Http4sDsl[F] {
 
   private def render(feed: Feed): Stream[F, Chunk[Byte]] =

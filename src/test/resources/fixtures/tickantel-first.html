@@ -1,0 +1,527 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es-es" lang="es-es">
+<head><script type="text/javascript" src="./wicket/resource/org.apache.wicket.resource.JQueryResourceReference/jquery/jquery-1.12.4-ver-8195A8C8C12FE76B1AF13FF30D4EC630.js"></script>
+<script type="text/javascript" src="https://tickantel.cdn.antel.net.uy/media/web/js/ta_menu_bar_panel.js"></script>
+<script type="text/javascript" src="https://tickantel.cdn.antel.net.uy/media/web/js/modernizr.custom.js"></script>
+<script type="text/javascript" src="https://tickantel.cdn.antel.net.uy/media/web/js/classie.js"></script>
+<script type="text/javascript" src="./wicket/resource/org.apache.wicket.ajax.AbstractDefaultAjaxBehavior/res/js/wicket-event-jquery-ver-87FD5918098397E3944A1056474D2CD1.js"></script>
+<script type="text/javascript" src="./wicket/resource/org.apache.wicket.ajax.AbstractDefaultAjaxBehavior/res/js/wicket-ajax-jquery-ver-302DEFBDE1B935CD1E4D6F92DF8EB33F.js"></script>
+<script type="text/javascript" id="wicket-ajax-base-url">
+/*<![CDATA[*/
+Wicket.Ajax.baseUrl="buscar_categoria?0&amp;cat_id=2";
+/*]]>*/
+</script>
+
+<script type="application/javascript" id="uy-com-hg-sve2-webcomponents-paneles-TAScrollLoaderPanel-0">
+$(window).on("scroll", function () {
+var wHeight = $(document).height();
+var wPosition = $(window).height() + $(window).scrollTop();
+if ((wHeight - wPosition) / wHeight === 0) {
+cargarResultados()
+}
+});
+function cargarResultados() {
+$(".cargar-link").hide();
+$(".loading").show();
+cargarMasResultados();
+}
+</script>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="initial-scale=1.0, width=device-width">
+<title>Tickantel | Comprá tu entrada online</title>
+<meta name="Language" content="es">
+<meta name="keywords" content="comprar entradas internet, venta entradas internet, comprar entradas Uruguay, venta entradas Uruguay, comprar entradas Antel, entradas Uruguay, Tickantel, reservar entradas internet, comprar entradas SMS, comprar tickets, espectaculos">
+<meta name="author" content="Tickantel">
+<meta name="description"
+content="Tickantel es el sitio de Antel donde podés comprar tus entradas en internet para todo tipo de espectáculos. Venta de entradas para espectáculos de música, teatro, deportes, conciertos, recitales y más.">
+<meta name="abstract" content="Tickantel es el sitio de Antel para comprar tus entradas por internet en Uruguay.">
+<meta name="subject"
+content="Tickantel es el sitio de Antel donde podés comprar tus entradas en internet para todo tipo de espectáculos en Uruguay.">
+<meta name="distribution" content="Global">
+<meta name="google-site-verification" content="QA19nLqdXxFiCb8vhQ_lNgFaASfVp30heqOswcmXr_U"/>
+<link rel="stylesheet" href="https://kit.fontawesome.com/63fef30cd3.css" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap">
+<!--[if lt IE 9]>
+<script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+<script type="text/javascript">
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WB2S4VK2');
+</script>
+
+<script>
+/*<![CDATA[*/
+
+$(function () {
+$('[data-toggle="tooltip"]').tooltip()
+})
+
+/*]]>*/
+</script>
+<link rel="stylesheet" href="https://kit.fontawesome.com/63fef30cd3.css" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://tickantel.cdn.antel.net.uy/media/web/assets/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="https://tickantel.cdn.antel.net.uy/media/web/plugins/boostrap/boostrap.min.css" />
+<link rel="stylesheet" type="text/css" href="https://tickantel.cdn.antel.net.uy/media/web/css/proceso-compra.css" />
+<link rel="stylesheet" type="text/css" href="https://tickantel.cdn.antel.net.uy/media/web/css/tickantel.css" />
+<script type="text/javascript" src="https://tickantel.cdn.antel.net.uy/media/web/js/popper.min.js"></script>
+<script type="text/javascript" src="https://tickantel.cdn.antel.net.uy/media/web/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://tickantel.cdn.antel.net.uy/media/web/js/bg-stars.js"></script>
+<meta name="robots" content="index, follow" />
+<script type="text/javascript" src="https://tickantel.cdn.antel.net.uy/media/web/js/ta_back_page_reload.js"></script>
+<script type="text/javascript" >
+/*<![CDATA[*/
+Wicket.Event.add(window, "domready", function(event) { 
+Wicket.Ajax.ajax({"u":"./buscar_categoria?0-1.IBehaviorListener.0-filtros-form-linkSinFiltro&cat_id=2","c":"id1","e":"click"});;
+Wicket.Ajax.ajax({"u":"./buscar_categoria?0-1.IBehaviorListener.0-filtros-form-losProximos&cat_id=2","m":"POST","c":"id2","e":"change"});;
+Wicket.Ajax.ajax({"u":"./buscar_categoria?0-1.IBehaviorListener.0-filtros-form-lugares&cat_id=2","m":"POST","c":"id3","e":"change"});;
+Wicket.Ajax.ajax({"u":"./buscar_categoria?0-1.IBehaviorListener.0-filtros-form-rangoPrecios&cat_id=2","m":"POST","c":"id4","e":"change"});;
+Wicket.Ajax.ajax({"u":"./buscar_categoria?0-1.IBehaviorListener.0-cargarMasResultadosPanel-cargarMasResultadosLink&cat_id=2","c":"id5","e":"click"});;
+cargarMasResultados=function () {
+var attrs = {"u":"./buscar_categoria?0-1.IBehaviorListener.0-cargarMasResultadosPanel&cat_id=2","c":"id6"};
+var params = [];
+attrs.ep = params.concat(attrs.ep || []);
+Wicket.Ajax.ajax(attrs);
+}
+;;
+Wicket.Event.publish(Wicket.Event.Topic.AJAX_HANDLERS_BOUND);
+;});
+/*]]>*/
+</script>
+</head>
+<body role="document">
+
+<div class="stars"></div>
+<div id="id7">
+
+</div>
+<div id="id8">
+<header class="color-secundario site site-header">
+<div class="container" id="id9">
+<nav>
+<aside class="navigation">
+<div class="d-flex align-items-center justify-content-end">
+<span class="ico-close-navigation ico-close ico ico-blue">Cerrar</span>
+</div>
+
+</aside>
+</nav>
+<div class="header-nav">
+<div class="row align-items-center">
+<div class="col-sm-12 col-md-6">
+<div class="d-flex align-items-center">
+<div class="logo-tickantel">
+<a href="./buscar_categoria?0-1.ILinkListener-header-header-topMenuBar-linkLogo&amp;cat_id=2">tickantel</a>
+</div>
+<div class="visible-sm visible-xs">
+<div class="nav-user">
+<a title="Ingresar" href="./login" class="">
+<i class="fa-light fa-arrow-right-to-bracket fa-2xl text-primary"></i>
+</a>
+
+</div>
+</div>
+<div class="w-100">
+<div class="search">
+<form role="search" action="/inicio/buscar">
+<div class="search-content">
+<input type="text" class="form-control" placeholder="Buscar" name="texto">
+<button type="submit" class="ico ico-search ico-blue">Buscar</button>
+</div>
+</form>
+</div>
+<span class="hide"><a class="btn-search" title="buscar" href="/inicio/buscar">buscar</a></span>
+</div>
+</div>
+</div>
+<div class="col-sm-12 col-md-6">
+<div class="d-flex align-items-center justify-content-end">
+<div class="hidden-sm hidden-xs" id="ida">
+<div class="nav-user">
+<div class="d-flex justify-content-end align-items-center">
+
+
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+</div>
+<main>
+
+<div class="container-fluid wrapper" role="main">
+
+<section class="busqueda">
+<div class="container">
+<div class="row">
+<div class="col">
+<header>
+<span class="subtitle">Eventos para:</span>
+<h1><span>Música</span></h1>
+</header>
+</div>
+</div>
+</div>
+<div class="bg-white pt-5 pb-5">
+<div class="container">
+<div class="row">
+<div class="col">
+<div id="idb">
+<form role="search" class="clearfix" id="idc" method="post" action="./buscar_categoria?0-1.IFormSubmitListener-filtros-form&amp;cat_id=2"><div style="width:0px;height:0px;position:absolute;left:-100px;top:-100px;overflow:hidden"><input type="hidden" name="idc_hf_0" id="idc_hf_0" /></div>
+
+<div class="filter">
+<div class="filters auto-filtros">
+<div class="item-filtro item-filtro-first">
+
+</div>
+<p>Filtrar por:</p>
+<div class="item-filtro form-group" id="idd">
+<div class="form-select">
+<select class="form-control" name="losProximos" id="id2">
+<option selected="selected" value="">Fecha</option>
+<option value="0">7 días</option>
+<option value="1">30 días</option>
+<option value="2">60 días</option>
+</select>
+</div>
+</div>
+<div class="item-filtro form-group">
+<div class="form-select">
+<select class="form-control" name="lugares" id="id3">
+<option selected="selected" value="">Lugar</option>
+<option value="40000250">Antel Arena</option>
+<option value="2351">Auditorio Adela Reta</option>
+<option value="3801">Auditorio Nelly Goitiño</option>
+<option value="14546752">Auditorio Vaz Ferreira</option>
+<option value="14551">Carreras</option>
+<option value="40000238">Cementerio Central</option>
+<option value="40000400">Centro Cultural de Pando</option>
+<option value="31676101">Centro Cultural Florencio Sánchez</option>
+<option value="40000381">Centro Cultural La Experimental</option>
+<option value="40000240">Centro Cultural Terminal Goes</option>
+<option value="40000008">Cine Teatro Municipal</option>
+<option value="40000346">Complejo Cultural Politeama</option>
+<option value="40000440">Dirección Nacional de Cultura</option>
+<option value="40000089">Estadio Club Atlético Aguada</option>
+<option value="40000236">FUBB</option>
+<option value="40000480">Intendencia de Montevideo</option>
+<option value="40000460">Liga de Fomento Atlántida (LIFA) R11 y R Inter</option>
+<option value="40000180">Parque Artigas de Las Piedras</option>
+<option value="40000452">Planetario de Montevideo</option>
+<option value="40000482">Predio Demostrativo URUFOREST</option>
+<option value="40000266">Sala Jorge Lazaroff</option>
+<option value="22412051">Sala Verdi</option>
+<option value="18393151">Sala Zitarrosa</option>
+<option value="40000006">Teatro 28 de Febrero</option>
+<option value="8702">Teatro de Verano</option>
+<option value="40000446">Teatro Escayola</option>
+<option value="40000028">Teatro Macció</option>
+<option value="40000005">Teatro Miguel Young</option>
+<option value="18393152">Teatro Solís</option>
+<option value="40000369">Unión de Rugby Uruguay</option>
+</select>
+</div>
+</div>
+<div class="item-filtro form-group">
+
+<div class="form-select">
+<select class="form-control" name="rangoPrecios" id="id4">
+<option selected="selected" value="">Precio</option>
+<option value="0">Menos de $200</option>
+<option value="1">de $200 a $1000</option>
+<option value="2">de $1000 a $2000</option>
+<option value="3">más de $2000</option>
+</select>
+</div>
+
+</div>
+<div id="ide" style="display:none"></div>
+<span title="Limpiar todos los filtros" id="id1">Limpiar filtros</span>
+</div>
+</div>
+</form>
+</div>
+
+<div class="resultados">
+<div id="idf">
+<div id="id10" style="display:none"></div>
+<div class="row" id="id11">
+<div class="col-lg-4 col-md-6">
+<div class="item">
+<div id="id12">
+<a id="id13" href="https://tickantel.com.uy/ng/espectaculo/40021484/ave-fenix-cuarteto-de-cuerdas">
+<div class="card card-img card-small bg-blue-light">
+<div class="card-content">
+<figure>
+<img src="https://tickantel.cdn.antel.net.uy/media/Espectaculo/40021484/Banner.jpg" alt="Ave Fénix – Cuarteto de Cuerdas">
+</figure>
+<p class="txt-upper txt-blue txt-bold auto-pf-date">
+
+
+<span>22 oct 2026</span>
+</p>
+<p class="title" id="id14">
+<span class="span-block">Ave Fénix – Cuarteto de Cuerdas</span>
+
+</p>
+<p>
+
+<span>Complejo Cultural Politeama</span>
+-
+<span>Sala Atahualpa del Cioppo</span>
+
+</p>
+</div>
+</div>
+</a>
+</div>
+</div>
+</div><div class="col-lg-4 col-md-6">
+<div class="item">
+<div id="id15">
+<a id="id16" href="https://tickantel.com.uy/ng/espectaculo/40021538/tmc-suena-latinoamerica">
+<div class="card card-img card-small bg-blue-light">
+<div class="card-content">
+<figure>
+<img src="https://tickantel.cdn.antel.net.uy/media/Espectaculo/40021538/Banner.jpg" alt="TMC: Suena Latinoamérica">
+</figure>
+<p class="txt-upper txt-blue txt-bold auto-pf-date">
+
+
+<span>22 oct 2026</span>
+</p>
+<p class="title" id="id17">
+<span class="span-block">TMC: Suena Latinoamérica</span>
+
+</p>
+<p>
+
+<span>Auditorio Vaz Ferreira</span>
+-
+<span>Sala Vaz Ferreira</span>
+
+</p>
+</div>
+</div>
+</a>
+</div>
+</div>
+</div><div class="col-lg-4 col-md-6">
+<div class="item">
+<div id="id18">
+<a id="id19" href="https://tickantel.com.uy/ng/espectaculo/40021237/los-mareados">
+<div class="card card-img card-small bg-blue-light">
+<div class="card-content">
+<figure>
+<img src="https://tickantel.cdn.antel.net.uy/media/Espectaculo/40021237/Banner.jpg" alt="Los Mareados">
+</figure>
+<p class="txt-upper txt-blue txt-bold auto-pf-date">
+
+
+<span>22 oct 2026</span>
+</p>
+<p class="title" id="id1a">
+<span class="span-block">Los Mareados</span>
+
+</p>
+<p>
+
+<span>Sala Zitarrosa</span>
+-
+<span>Sala Zitarrosa</span>
+
+</p>
+</div>
+</div>
+</a>
+</div>
+</div>
+</div><div class="col-lg-4 col-md-6">
+<div class="item">
+<div id="id1b">
+<a id="id1c" href="https://tickantel.com.uy/ng/espectaculo/40021162/milongas-extremas">
+<div class="card card-img card-small bg-blue-light">
+<div class="card-content">
+<figure>
+<img src="https://tickantel.cdn.antel.net.uy/media/Espectaculo/40021162/MILONGAS_EXTREMAS_GRAFICAS_ANTEL_ARENA_GRILLA_WEB.jpg.jpeg" alt="Milongas Extremas">
+</figure>
+<p class="txt-upper txt-blue txt-bold auto-pf-date">
+
+
+<span>22 oct 2026</span>
+</p>
+<p class="title" id="id1d">
+<span class="span-block">Milongas Extremas</span>
+
+</p>
+<p>
+
+<span>Antel Arena</span>
+-
+<span>Antel Arena</span>
+
+</p>
+</div>
+</div>
+</a>
+</div>
+</div>
+</div><div class="col-lg-4 col-md-6">
+<div class="item">
+<div id="id1e">
+<a id="id1f" href="https://tickantel.com.uy/ng/espectaculo/40021449/buitres-nido-de-espinas-sesiones-inmersivas">
+<div class="card card-img card-small bg-blue-light">
+<div class="card-content">
+<figure>
+<img src="https://tickantel.cdn.antel.net.uy/media/Espectaculo/40021449/Buitres_Planetario_700x390.png" alt="Buitres - Nido de Espinas – Sesiones Inmersivas">
+</figure>
+<p class="txt-upper txt-blue txt-bold auto-pf-date">
+
+
+<span>hasta el</span>&nbsp<span>28 nov 2026</span>
+
+
+</p>
+<p class="title" id="id20">
+<span class="span-block">Buitres - Nido de Espinas – Sesiones Inmersivas</span>
+
+</p>
+<p>
+
+<span>Planetario de Montevideo</span>
+-
+<span>Planetario</span>
+
+</p>
+</div>
+</div>
+</a>
+</div>
+</div>
+</div><div class="col-lg-4 col-md-6">
+<div class="item">
+<div id="id21">
+<a id="id22" href="https://tickantel.com.uy/ng/espectaculo/40020167/ojns-siete-canciones-espanolas">
+<div class="card card-img card-small bg-blue-light">
+<div class="card-content">
+<figure>
+<img src="https://tickantel.cdn.antel.net.uy/media/Espectaculo/40020167/canciones_españolas_700x390.png" alt="OJNS - Siete canciones españolas">
+</figure>
+<p class="txt-upper txt-blue txt-bold auto-pf-date">
+
+
+<span>23 oct 2026</span>
+</p>
+<p class="title" id="id23">
+<span class="span-block">OJNS - Siete canciones españolas</span>
+
+</p>
+<p>
+
+<span>Auditorio Adela Reta</span>
+-
+<span>Sala Eduardo Fabini</span>
+
+</p>
+</div>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="text-center" id="id6">
+
+<a class="cargar-link" id="id5" href="javascript:;">Cargar m&aacute;s resultados</a>
+<div class="loading" style="display: none"></div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+</div>
+
+</main>
+<div id="id24">
+<div class="links-app visible-sm text-center">
+<p>También disponible en:</p>
+<div class="d-flex justify-content-center">
+<a href="https://play.google.com/store/apps/details?id=uy.com.antel.tickantel&hl=es"><img alt="Logo de Google Play" title="Google Play" width="40px" src="https://tickantel.cdn.antel.net.uy/media/web/assets/svg/ico-googlePlay.svg"/></a>
+<a href="https://itunes.apple.com/uy/app/tickantel/id1034445139?l=es&mt=8"><img alt="Logo de App Store" title="App Store" width="40px" src="https://tickantel.cdn.antel.net.uy/media/web/assets/svg/ico-appStore.svg"/></a>
+</div>
+</div>
+<footer class="site-footer">
+<div class="container">
+<div class="row">
+<div class="col d-flex justify-content-between">
+<div class="footer-info">
+<p class="hidden-sm">©2025 Antel - Guatemala 1075, Complejo Torre de las Telecomunicaciones - Montevideo, Uruguay</p>
+</div>
+<ul class="d-flex">
+<li><a href="./buscar_categoria?0-1.ILinkListener-footer-contactoLink&amp;cat_id=2" id="contactoLinkId">
+Contacto
+</a></li>
+<li><a href="./buscar_categoria?0-1.ILinkListener-footer-ayudaLink&amp;cat_id=2" id="ayudaLinkId">
+Ayuda
+</a></li>
+<li><a href="https://tickantel.com.uy/tyc" target="_blank" rel="noopener noreferrer" id="terminosLinkId">
+Términos y condiciones
+</a></li>
+</ul>
+</div>
+</div>
+</div>
+</footer>
+
+<noscript>
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB2S4VK2"
+height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+</div>
+
+
+
+
+
+
+<div id="id25">
+<div class="modal fade" id="cambiarTitularModal" tabindex="-1" aria-labelledby="cambiarTitularModalLabel" aria-hidden="true" role="dialog">
+<div class="modal-dialog modal-dialog-centered modal-md" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h1 class="modal-title" id="cambiarTitularModalLabel">Cambiar titular</h1>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">×</span>
+</button>
+</div>
+<div class="modal-body">
+
+<div id="id26" style="display:none"></div>
+<div id="id27" style="display:none"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="overlay-content"></div>
+</body>
+</html>

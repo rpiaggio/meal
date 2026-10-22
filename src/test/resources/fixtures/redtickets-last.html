@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+<meta name="description" content="w Category"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<!--[if IE]><meta http-equiv="page-enter" content="blendTrans(Duration=0.1)"/><![endif]-->
+<meta name="fragment" content="!"/>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<title>Búsqueda por * | RedTickets</title>
+<style data-gx-href="/static/bootstrap/css/bootstrap.min.css?2124716911"> @import url("/static/bootstrap/css/bootstrap.min.css?2124716911") layer(bootstrap_css_bootstrap_min_css);</style>
+<link id="gxtheme_css_reference" rel="stylesheet" type="text/css" href="/static/Resources/Spanish/Frontend.rtDS.css?2124716911" />
+<script type="text/javascript" src="/static/jquery.js?1820180" ></script>
+<script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js?2124716911" ></script>
+<script type="text/javascript" src="/static/gxgral.js?1820180" ></script>
+<script type="text/javascript" src="/static/gxcfg.js?2124716911" ></script>
+<script type="text/javascript" src="/static/DSv2/rt-banner-colection.js?2124716911" ></script>
+<script type="text/javascript" src="/static/UserControls/Frontend.rtBannerColectionRender.js?2124716911" ></script>
+<script type="text/javascript" src="/static/UserControls/Frontend.rtSearchRender.js?2124716911" ></script>
+<script type="text/javascript" src="/static/UserControls/idModalWindowRender.js?2124716911" ></script>
+<script type="text/javascript" src="/static/UIRedtickets/jquery.lazy.min.js?2124716911" ></script>
+<script type="text/javascript" src="/static/UserControls/Frontend.rtEventCardsRender.js?2124716911" ></script>
+<link rel="apple-touch-icon" sizes="180x180" href="/static/Resources/apple_touch_icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/static/Resources/rtFavicon32.png"><link rel="shortcut icon" type="image/png" sizes="16x16" href="/static/Resources/rtFavicon16.png"><link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://kit.fontawesome.com/83dca04ec2.css" crossorigin="anonymous"><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/><script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script><!-- Google Analytics --><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', 'UA-72198953-1', 'auto');ga('send', 'pageview');</script><!-- End Google Analytics --></head>
+<body  class="form-horizontal Form" style='background-color:#ffffff;color:#000000;-moz-opacity:0;opacity:0;' data-HasEnter="false" data-Skiponenter="false">
+<form id="MAINFORM" autocomplete="off" name="MAINFORM" method="post" tabindex=-1  class="form-horizontal Form" data-gx-class="form-horizontal Form" novalidate action="com.redtickets.frontend.wcategory?,3,Musica,11">
+<div style="height:0;overflow:hidden"><input type="submit" title="submit"  disabled></div><div  class="Section"  data-gx-base-lib="bootstrapv3" data-abstract-form ><div id="MAINTABLE_MPAGE"  class="Table" ><div  class="row" ><div  class="col-xs-12" ><div class="gx_usercontrol" id="RTMESSAGE_MPAGEContainer"><style>
+	/* Contenedor fijo arriba a la derecha */
+	.rt-gxmsg__stack{
+	position: fixed;
+	top: 16px;
+	right: 16px;
+	z-index: 99999;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	pointer-events: none; /* que no bloquee clicks */
+	}
+	
+	/* Tarjeta */
+	.rt-gxmsg__item{
+	pointer-events: auto;
+	min-width: 280px;
+	max-width: 420px;
+	border-radius: 14px;
+	padding: 12px 12px;
+	box-shadow: 0 10px 30px rgba(0,0,0,.18);
+	display: grid;
+	grid-template-columns: 28px 1fr 28px;
+	gap: 10px;
+	align-items: start;
+	transform: translateY(-8px);
+	opacity: 0;
+	transition: opacity .18s ease, transform .18s ease;
+	font-family: inherit;
+	}
+	
+	.rt-gxmsg__item.is-in{
+	opacity: 1;
+	transform: translateY(0);
+	}
+	
+	/* Variantes */
+	.rt-gxmsg__item.is-warning{
+	border: 1px solid #fed7aa;
+	color: #7c2d12;
+	}
+	.rt-gxmsg__item.is-error{
+	border: 1px solid #fecaca;
+	color: #7f1d1d;
+	}
+	.rt-gxmsg__item.is-info{
+	border: 1px solid #bfdbfe;
+	color: #1e3a8a;
+	}
+	.rt-gxmsg__item.is-success{
+	border: 1px solid #bbf7d0;
+	color: #14532d;
+	}
+	
+	.rt-gxmsg__icon{
+	width: 28px; height: 28px;
+	display: grid;
+	place-items: center;
+	border-radius: 10px;
+	font-weight: 700;
+	line-height: 1;
+	user-select: none;
+	}
+	.rt-gxmsg__item.is-warning { background:#ffedd5; }
+	.rt-gxmsg__item.is-error { background:#fee2e2; }
+	.rt-gxmsg__item.is-info { background:#dbeafe; }
+	.rt-gxmsg__item.is-success { background:#dcfce7; }
+	
+	.rt-gxmsg__item.is-warning .rt-gxmsg__icon{ background:#ffedd5; }
+	.rt-gxmsg__item.is-error   .rt-gxmsg__icon{ background:#fee2e2; }
+	.rt-gxmsg__item.is-info    .rt-gxmsg__icon{ background:#dbeafe; }
+	.rt-gxmsg__item.is-success .rt-gxmsg__icon{ background:#dcfce7; }
+	
+	.rt-gxmsg__title{
+	font-size: 12px;
+	font-weight: 700;
+	opacity: .9;
+	margin: 0 0 2px 0;
+	}
+	.rt-gxmsg__text{
+	font-size: var(--fontsizes_body2);
+	font-weight: 400;
+	margin: 0;
+	padding-top: 3px;
+	}
+	
+	.rt-gxmsg__close{
+	width: 28px; height: 28px;
+	border-radius: 10px;
+	border: 0;
+	background: transparent;
+	cursor: pointer;
+	display: grid;
+	place-items: center;
+	font-size: 16px;
+	}
+	
+	.rt-gxmsg__close:hover{ background: transparent; }
+	
+	/* Opcional: ocultar los mensajes originales de GX */
+	.gx-warning-message,
+	.gx-error-message,
+	.gx-message{
+	display: none !important;
+	}
+		
+	/* marcar campo */
+	.rt-gx-invalid {
+	outline: none !important;
+	border: 1px solid rgba(220, 38, 38, .8) !important;
+	box-shadow: 0 0 0 3px rgba(220, 38, 38, .18) !important;
+	border-radius: 10px;
+	}
+	
+	/* contenedor error inline */
+	.rt-gx-inline-error {
+	margin-top: 6px;
+	font-size: 12px;
+	font-weight: 700;
+	color: #7f1d1d;
+	background: #fef2f2;
+	border: 1px solid #fecaca;
+	padding: 8px 10px;
+	border-radius: 10px;
+	line-height: 1.2;
+	}
+	
+	/* para ubicarlo prolijo al lado de inputs dentro de gx-form-group */
+	.gx-form-group .rt-gx-inline-error {
+	margin-left: 0;
+	}
+</style>
+
+<div class="rt-gxmsg" data-uc="rt-gxmsg">
+  <div class="rt-gxmsg__stack" aria-live="polite" aria-atomic="true"></div>
+</div>
+
+</div></div></div><div  class="row" ><div id="UCRTMENU_MPAGE"  class="col-xs-12" ><div class="gx_usercontrol" id="RTMENU_MPAGEContainer">
+<header class="rt-navbar rt-navbar--fixed rt-show" data-component="rt-navbar">
+  <div class="rt-navbar__container">
+    <a href="/" class="rt-navbar__brand" aria-label="Inicio">
+      <span class="rt-navbar__brand-text">
+	 	<img src="https://files.redtickets.uy/recursos/front/uy/Redtickets_logo.svg"  alt="Redtickets"  loading="lazy" height="40" />
+      </span>
+    </a>
+
+    <!-- Toggle como DIV para evitar conflictos con eventos en GeneXus -->
+    <div class="rt-navbar__toggle" role="button" tabindex="0"
+         aria-expanded="false" aria-controls="rt-navbar-menu" aria-label="Abrir menú">
+      <span class="rt-navbar__toggle-bar"></span>
+      <span class="rt-navbar__toggle-bar"></span>
+      <span class="rt-navbar__toggle-bar"></span>
+    </div>
+
+    <!-- Navegación -->
+    <nav id="rt-navbar-menu" class="rt-navbar__nav" aria-label="Navegación principal">
+      <!-- Botón Cerrar (solo mobile) -->
+      <div class="rt-navbar__close" role="button" tabindex="0" aria-label="Cerrar menú"></div>
+
+      <ul class="rt-navbar__list">
+        <li class="rt-navbar__item"><a class="rt-navbar__link " href="" target=""></a></li>
+        <li class="rt-navbar__item"><a class="rt-navbar__link " href="" target=""></a></li>
+        <li class="rt-navbar__item"><a class="rt-navbar__link " href="" target=""></a></li>
+        <li class="rt-navbar__item"><a class="rt-navbar__link " href="" target=""></a></li>
+        <li class="rt-navbar__item"><a class="rt-navbar__link " href="" target=""></a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Backdrop para mobile -->
+  <div class="rt-navbar__backdrop" hidden></div>
+</header>
+
+<!-- Spacer que empuja el contenido cuando el header es fixed -->
+<div class="rt-navbar__spacer" aria-hidden="true"></div></div></div></div><div  class="row" ><div  class="col-xs-12" ><div id="CONTENEDORBODY_MPAGE" ><div class="gx-content-placeholder" ><div class="gx-ct-body form-horizontal Form-fx" ><div><span class="gx_ev ErrorViewerBullet"  data-gx-id="gxErrorViewer"></span></div><div  class="Section"  data-gx-base-lib="bootstrapv3" data-abstract-form ><div id="MAINTABLE" ><div  class="row" ><div  class="col-xs-12" ><div id="TABLE1"  class="ContenedorBody" ><div  class="row" ><div  class="col-xs-12" ><div class="gx_usercontrol" id="RTBANNERCOLECTIONContainer"><style>
+	.rt-publicidad__img {
+	transition: opacity 0.4s ease-in-out;
+	}
+</style>
+
+<div class="ContenedorBody rt-publicidad">
+</div>
+</div></div></div><div  class="row" ><div  class="col-xs-12" ><div class="Heading2 rt-title-page"  style="display:inline;"  id="TITLECATEGORY"  data-gxformat="1" ><i class="fa-solid fa-regular fa-music rt-category__icon rt-mr-12px" style="color:AF69F0"></i>Música</div></div></div></div></div></div><div  class="row TableMasterSearch" ><div id="UCRTSEARCH"  class="col-xs-12" ><div class="gx_usercontrol" id="RTSEARCHContainer"><div class="rt-search  rt-" role="search" aria-label="Buscar eventos">
+  <!-- Botón de filtro (visible a la izquierda en mobile, a la derecha en desktop) -->
+  <button type="button" class="rt-search__filter" aria-label="Abrir filtros" title="Filtros"  data-event="ShowFilters" >
+    <!-- icono funnel -->
+    <svg class="rt-search__icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M3 5h18v2l-7 8v4l-4 2v-6L3 7V5z"/>
+    </svg>
+  </button>
+
+  <!-- Contenedor del input + botón buscar -->
+  <div class="rt-search__field">
+    <span class="rt-search__leading" aria-hidden="true">|</span>
+    <div data-slot="InputSearch" data-parent="RTSEARCHContainer"></div>
+    <button class="rt-search__submit" title="Buscar"  data-event="OnClick" >
+      <svg class="rt-search__icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M15.5 14h-.79l-.28-.27a6.471 6.471 0 001.57-4.23C15.99 6.01 13 3 9.5 3S3 6.01 3 9.5 6.01 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 5 1.5-1.5-5-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+      </svg>
+      <span class="rt-search__submit-text">Buscar</span>
+    </button>
+  </div>
+</div>
+
+
+
+</div><div class="gx_usercontrol_child" id="RTSEARCHContainerRtsearch_InputSearch" style="display:none;"><div id="RTSEARCH_INPUTSEARCH"  class="Table" ><div  class="row" ><div  class="col-xs-12" ><div  class="gx-attribute" ><label  class="gx-label col-sm-3 rt-search__inputLabel control-label" for="vSEARCHTEXT" data-gx-sr-only 
+>Search Text</label><input type="text" id="vSEARCHTEXT" name="vSEARCHTEXT" value="" title="Buscá tu próximo plan" placeholder="Buscá tu próximo plan" spellcheck="true" maxlength="100" class="rt-search__input"  style="width: 100%;text-align:start"   onfocus="gx.evt.onfocus(this, 21,'',false,'',0)" onchange=";gx.evt.onchange(this, event)"  onblur=";gx.evt.onblur(this,21);"/></div></div></div></div></div></div></div><div  class="row" ><div  class="col-xs-12" ><div class="gx_usercontrol" id="COMPONENTFILTERSContainer"><dialog class="gx-dialog gx-dialog-filters" id="ModalFilter">
+  <div class="gx-dialog-header">
+    <p class="PopupTitle gx-dialog-title">Filtros</p>
+    <button type="button" id="ModalFilterClose" class="gx-dialog-close close" aria-label="Close" data-action="close">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+
+  <div class="gx-dialog-body">
+    <div data-slot="slotModal" data-parent="COMPONENTFILTERSContainer"></div>
+  </div>
+</dialog></div><div class="gx_usercontrol_child" id="COMPONENTFILTERSContainerComponentfilters_slotModal" style="display:none;"><div id="COMPONENTFILTERS_SLOTMODAL"  class="Table" ><div  class="row" ><div  class="col-xs-12" ><div id="TABLE3"  class="Table" ><div  class="row" ><div  class="col-xs-12 input-filter-popup" data-align-flex  data-align="center"><div  class="form-group gx-form-group"  data-gx-for="vCATEGORYIDFILTER"><label  class="gx-label col-xs-12 CheckoutInputLabel control-label" for="vCATEGORYIDFILTER">Categorías</label><div  class="col-xs-12 gx-attribute" ><select id="vCATEGORYIDFILTER" name="vCATEGORYIDFILTER" class="CheckoutInput"  style="width: 100%"  data-gxoch0="if(!(gx.evt.jsEvent(this))) return false;"  onfocus="gx.evt.onfocus(this, 34,'',false,'',0)" onchange=";gx.evt.onchange(this, event)"  onblur=";gx.evt.onblur(this,34);">
+<option value="0" selected="selected" >Seleccione una categoría</option><option value="28">Afiliados (13)</option><option value="10">Carnaval (3)</option><option value="87">Cine (4)</option><option value="5">Conferencias (40)</option><option value="4">Cursos (15)</option><option value="2">Deportes (33)</option><option value="13">Empresarial (5)</option><option value="7">Especiales (80)</option><option value="1">Familiares (24)</option><option value="30">Festivales (26)</option><option value="9">Fiestas (160)</option><option value="8">Fútbol (12)</option><option value="12">Giras (12)</option><option value="45">Museos (24)</option><option value="3">Música (287)</option><option value="6">Teatro (227)</option><option value="32">Turismo (20)</option></select>
+</div></div></div></div><div  class="row" ><div  class="col-xs-12 input-filter-popup" data-align-flex  data-align="center"><div  class="form-group gx-form-group"  data-gx-for="vLOCATIONCITYFILTER"><label  class="gx-label col-xs-12 CheckoutInputLabel control-label" for="vLOCATIONCITYFILTER">Localidad / Ciudad</label><div  class="col-xs-12 gx-attribute" ><select id="vLOCATIONCITYFILTER" name="vLOCATIONCITYFILTER" class="CheckoutInput"  style="width: 100%"  data-gxoch0="if(!(gx.evt.jsEvent(this))) return false;"  onfocus="gx.evt.onfocus(this, 39,'',false,'',0)" onchange=";gx.evt.onchange(this, event)"  onblur=";gx.evt.onblur(this,39);">
+<option value="" selected="selected" >Seleccione una Localidad / Ciudad</option></select>
+</div></div></div></div><div  class="row"  style="min-height:10px;" ></div><div  class="row" ><div  class="col-xs-12" data-align-flex  data-align="center"><input type="button" data-gx-button name="APPLYFILTERS" id="APPLYFILTERS" value="Aplicar" title="Aplicar filtros" class="rt-btn-primary"  data-gx-evt="5"   onfocus="gx.evt.onfocus(this, 43,'',false,'',0)"/></div></div><div  class="row" ><div  class="col-xs-12" data-align-flex  data-align="center"><input type="button" data-gx-button name="CLEARFILTERS" id="CLEARFILTERS" value="Limpiar filtros" title="Limpiar filtros" class="rt-btn-link"  data-gx-evt="7"   onfocus="gx.evt.onfocus(this, 46,'',false,'',0)"/></div></div></div></div></div></div></div></div></div><div  class="row" ><div  class="col-xs-12" ><div id="TABLE2"  class="ContenedorBody" ><div  class="row" ><div  class="col-xs-12" ><div id="TABLERESULTS"  class="Table" ><div  class="row" ><div  class="col-xs-12 contentCards" ><div class="gx_usercontrol" id="RTEVENTCARDS1Container"><main class="rt-list__track">
+	<article class="rt-card-primary">
+		<a class="rt-card__media" href="/evento/NU-EN-SUVD/24309/">
+			<img src="https://files.redtickets.uy/imagenes/9f2c6772-ea58-4a80-8794-2382e8655642_Event_24309.jpg" >
+		</a>
+		<div class="rt-card__body">		
+			
+			<h3 class="Heading3 rt-card__title" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;">ÑU EN SUVD</h3>
+			<div class="rt-card-primary__meta">
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-calendar"></i>
+					</span>
+					<span class="Body3 rt-meta">Martes 15 de Diciembre</span>
+				</div>
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-location-dot"></i>
+					</span>
+					<span class="Body3 rt-meta">Sociedad Urbana Villa Dolores</span>
+				</div>
+				
+			</div>
+		</div>
+	</article>
+	<article class="rt-card-primary">
+		<a class="rt-card__media" href="/evento/Cami-Ferrari-y-Nacho-Mateu-presentan-GUITARRON-NEGRO/34415/">
+			<img src="https://files.redtickets.uy/imagenes/3e2e0fa9-0d59-430d-8b41-233d3d52c01b_Event_34415.jpg" >
+		</a>
+		<div class="rt-card__body">		
+			
+			<h3 class="Heading3 rt-card__title" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;">Cami Ferrari y Nacho Mateu presentan GUITARRON NEGRO</h3>
+			<div class="rt-card-primary__meta">
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-calendar"></i>
+					</span>
+					<span class="Body3 rt-meta">Miércoles 16 de Diciembre</span>
+				</div>
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-location-dot"></i>
+					</span>
+					<span class="Body3 rt-meta">Sala Rondeau</span>
+				</div>
+				
+			</div>
+		</div>
+	</article>
+	<article class="rt-card-primary">
+		<a class="rt-card__media" href="/evento/KPOP-DANCE-STUDIO-MUESTRA-ANUAL-2026/33985/">
+			<img src="https://files.redtickets.uy/imagenes/6499f953-6363-4bd3-beaa-ce2b587b545d_Event_33985.jpg" >
+		</a>
+		<div class="rt-card__body">		
+			
+			<h3 class="Heading3 rt-card__title" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;">KPOP DANCE STUDIO: MUESTRA ANUAL 2026</h3>
+			<div class="rt-card-primary__meta">
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-calendar"></i>
+					</span>
+					<span class="Body3 rt-meta">Jueves 17 de Diciembre</span>
+				</div>
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-location-dot"></i>
+					</span>
+					<span class="Body3 rt-meta">Teatro Metro</span>
+				</div>
+				
+			</div>
+		</div>
+	</article>
+	<article class="rt-card-primary">
+		<a class="rt-card__media" href="/evento/Zeballos--AMOR-FIADO-en-Colonia/32610/">
+			<img src="https://files.redtickets.uy/imagenes/404e37d2-f7cb-4490-8614-57eac47fa087_Event_32610.jpg" >
+		</a>
+		<div class="rt-card__body">		
+			
+			<h3 class="Heading3 rt-card__title" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;">Zeballos - AMOR FIADO en Colonia</h3>
+			<div class="rt-card-primary__meta">
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-calendar"></i>
+					</span>
+					<span class="Body3 rt-meta">Viernes 18 de Diciembre</span>
+				</div>
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-location-dot"></i>
+					</span>
+					<span class="Body3 rt-meta">Sala Uruguay Natural</span>
+				</div>
+				
+			</div>
+		</div>
+	</article>
+	<article class="rt-card-primary">
+		<a class="rt-card__media" href="/evento/TRIBUTO-A-OASIS-SUPERNOVA/33878/">
+			<img src="https://files.redtickets.uy/imagenes/05327342-52c9-4bf0-9cee-406e87cb2f0a_Event_0.jpg" >
+		</a>
+		<div class="rt-card__body">		
+			
+			<h3 class="Heading3 rt-card__title" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;">TRIBUTO A OASIS SUPERNOVA</h3>
+			<div class="rt-card-primary__meta">
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-calendar"></i>
+					</span>
+					<span class="Body3 rt-meta">Viernes 18 de Diciembre</span>
+				</div>
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-location-dot"></i>
+					</span>
+					<span class="Body3 rt-meta">Sala Rincon</span>
+				</div>
+				
+			</div>
+		</div>
+	</article>
+	<article class="rt-card-primary">
+		<a class="rt-card__media" href="/evento/MG-Cuarteto-de-Nos--Montevideo/34286/">
+			<img src="https://files.redtickets.uy/imagenes/8ef91455-adb0-497f-8122-0425260d5c73_Event_34286.jpg" >
+		</a>
+		<div class="rt-card__body">		
+			
+			<h3 class="Heading3 rt-card__title" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;">M&amp;G Cuarteto de Nos - Montevideo</h3>
+			<div class="rt-card-primary__meta">
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-calendar"></i>
+					</span>
+					<span class="Body3 rt-meta">Sábado 19 de Diciembre</span>
+				</div>
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-location-dot"></i>
+					</span>
+					<span class="Body3 rt-meta">Rambla Club de Golf</span>
+				</div>
+				
+			</div>
+		</div>
+	</article>
+	<article class="rt-card-primary">
+		<a class="rt-card__media" href="/evento/LOS-AMIGOS-INVISIBLES-EN-MONTEVIDEO/32937/">
+			<img src="https://files.redtickets.uy/imagenes/f509cc19-4168-467a-8252-cb7db567a8f9_Event_0.jpg" >
+		</a>
+		<div class="rt-card__body">		
+			
+			<h3 class="Heading3 rt-card__title" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;">LOS AMIGOS INVISIBLES EN MONTEVIDEO</h3>
+			<div class="rt-card-primary__meta">
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-calendar"></i>
+					</span>
+					<span class="Body3 rt-meta">Sábado 19 de Diciembre</span>
+				</div>
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-location-dot"></i>
+					</span>
+					<span class="Body3 rt-meta">Montevideo Music Box</span>
+				</div>
+				
+			</div>
+		</div>
+	</article>
+	<article class="rt-card-primary">
+		<a class="rt-card__media" href="/evento/Federico-Nathan--Presentacion-del-nuevo-album-TAR/34366/">
+			<img src="https://files.redtickets.uy/imagenes/4f0dbded-3448-433a-bc01-56f47c7cf4ae_Event_34366.jpg" >
+		</a>
+		<div class="rt-card__body">		
+			
+			<h3 class="Heading3 rt-card__title" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;">Federico Nathan - Presentación del nuevo álbum TAR</h3>
+			<div class="rt-card-primary__meta">
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-calendar"></i>
+					</span>
+					<span class="Body3 rt-meta">Sábado 19 de Diciembre</span>
+				</div>
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-location-dot"></i>
+					</span>
+					<span class="Body3 rt-meta">Magnolio Sala</span>
+				</div>
+				
+			</div>
+		</div>
+	</article>
+	<article class="rt-card-primary">
+		<a class="rt-card__media" href="/evento/CUARTETO-DE-NOS--ASI-SOY-YO/30560/">
+			<img src="https://files.redtickets.uy/imagenes/a9e7add9-9352-4a80-9a8f-ef3bb0de48e1_Event_30560.jpg" >
+		</a>
+		<div class="rt-card__body">		
+			
+			<h3 class="Heading3 rt-card__title" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;">CUARTETO DE NOS - ASÍ SOY YO</h3>
+			<div class="rt-card-primary__meta">
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-calendar"></i>
+					</span>
+					<span class="Body3 rt-meta">Sábado 19 de Diciembre</span>
+				</div>
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-location-dot"></i>
+					</span>
+					<span class="Body3 rt-meta">Rambla Club de Golf</span>
+				</div>
+				
+			</div>
+		</div>
+	</article>
+	<article class="rt-card-primary">
+		<a class="rt-card__media" href="/evento/ANO-NUEVO-EN-EL-MAR/34109/">
+			<img src="https://files.redtickets.uy/imagenes/9581ac4f-c49f-41e0-a0ee-862d6af3340a_Event_34109.jpg" >
+		</a>
+		<div class="rt-card__body">		
+			
+			<h3 class="Heading3 rt-card__title" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;">AÑO NUEVO EN EL MAR</h3>
+			<div class="rt-card-primary__meta">
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-calendar"></i>
+					</span>
+					<span class="Body3 rt-meta">31/12/2026 - 01/01/2027</span>
+				</div>
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-location-dot"></i>
+					</span>
+					<span class="Body3 rt-meta">Puerto de Punta del Este Departamento de Maldonado</span>
+				</div>
+				
+			</div>
+		</div>
+	</article>
+	<article class="rt-card-primary">
+		<a class="rt-card__media" href="/evento/RODA-DE-SAMBA-EN-EL-MAR/34116/">
+			<img src="https://files.redtickets.uy/imagenes/a5842b72-2609-4cf3-8d84-60157b23ebf5_Event_34116.jpg" >
+		</a>
+		<div class="rt-card__body">		
+			
+			<h3 class="Heading3 rt-card__title" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;">RODA DE SAMBA EN EL MAR</h3>
+			<div class="rt-card-primary__meta">
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-calendar"></i>
+					</span>
+					<span class="Body3 rt-meta">Sábado 2 de Enero</span>
+				</div>
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-location-dot"></i>
+					</span>
+					<span class="Body3 rt-meta">Puerto de Punta del Este Departamento de Maldonado</span>
+				</div>
+				
+			</div>
+		</div>
+	</article>
+	<article class="rt-card-primary">
+		<a class="rt-card__media" href="/evento/AVATAR/32404/">
+			<img src="https://files.redtickets.uy/imagenes/f23f255e-5bf2-4b7f-b1c4-88d1bac9a61b_Event_0.jpg" >
+		</a>
+		<div class="rt-card__body">		
+			
+			<h3 class="Heading3 rt-card__title" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;">AVATAR</h3>
+			<div class="rt-card-primary__meta">
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-calendar"></i>
+					</span>
+					<span class="Body3 rt-meta">Martes 12 de Enero</span>
+				</div>
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-location-dot"></i>
+					</span>
+					<span class="Body3 rt-meta">Live Era</span>
+				</div>
+				
+			</div>
+		</div>
+	</article>
+	<article class="rt-card-primary">
+		<a class="rt-card__media" href="/evento/RHAPSODY--The-Final-Show/34349/">
+			<img src="https://files.redtickets.uy/imagenes/41429cc9-9575-4074-a81d-a4a406184135_Event_0.jpg" >
+		</a>
+		<div class="rt-card__body">		
+			
+			<h3 class="Heading3 rt-card__title" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;">RHAPSODY - The Final Show</h3>
+			<div class="rt-card-primary__meta">
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-calendar"></i>
+					</span>
+					<span class="Body3 rt-meta">Miércoles 24 de Febrero</span>
+				</div>
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-location-dot"></i>
+					</span>
+					<span class="Body3 rt-meta">Montevideo Departamento de Montevideo</span>
+				</div>
+				
+			</div>
+		</div>
+	</article>
+	<article class="rt-card-primary">
+		<a class="rt-card__media" href="/evento/OVERKILL-en-Uruguay/34371/">
+			<img src="https://files.redtickets.uy/imagenes/a222b13a-189a-47e3-9334-8dc1bf9eb56d_Event_34371.jpg" >
+		</a>
+		<div class="rt-card__body">		
+			
+			<h3 class="Heading3 rt-card__title" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;">OVERKILL en Uruguay</h3>
+			<div class="rt-card-primary__meta">
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-calendar"></i>
+					</span>
+					<span class="Body3 rt-meta">Martes 2 de Marzo</span>
+				</div>
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-location-dot"></i>
+					</span>
+					<span class="Body3 rt-meta">Montevideo Music Box</span>
+				</div>
+				
+			</div>
+		</div>
+	</article>
+	<article class="rt-card-primary">
+		<a class="rt-card__media" href="/evento/EPICA-en-Montevideo/32473/">
+			<img src="https://files.redtickets.uy/imagenes/8bbc0184-3a49-465a-9751-30f41ca206a8_Event_0.jpg" >
+		</a>
+		<div class="rt-card__body">		
+			
+			<h3 class="Heading3 rt-card__title" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;">EPICA en Montevideo</h3>
+			<div class="rt-card-primary__meta">
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-calendar"></i>
+					</span>
+					<span class="Body3 rt-meta">Miércoles 3 de Marzo</span>
+				</div>
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-location-dot"></i>
+					</span>
+					<span class="Body3 rt-meta">Montevideo Music Box</span>
+				</div>
+				
+			</div>
+		</div>
+	</article>
+	<article class="rt-card-primary">
+		<a class="rt-card__media" href="/evento/EDU-FALASCHI--Rebirth-of-Shadows/33068/">
+			<img src="https://files.redtickets.uy/imagenes/99595ade-ecf4-490c-a203-03120957f8e3_Event_0.jpg" >
+		</a>
+		<div class="rt-card__body">		
+			
+			<h3 class="Heading3 rt-card__title" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;">EDU FALASCHI - Rebirth of Shadows</h3>
+			<div class="rt-card-primary__meta">
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-calendar"></i>
+					</span>
+					<span class="Body3 rt-meta">Viernes 19 de Marzo</span>
+				</div>
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-location-dot"></i>
+					</span>
+					<span class="Body3 rt-meta">Live Era</span>
+				</div>
+				
+			</div>
+		</div>
+	</article>
+	<article class="rt-card-primary">
+		<a class="rt-card__media" href="/evento/MIKA-KOBAYASHI-en-Montevideo/32847/">
+			<img src="https://files.redtickets.uy/imagenes/bbb1a6c7-94b3-472d-9e1e-5ea66b16ce40_Event_0.jpg" >
+		</a>
+		<div class="rt-card__body">		
+			
+			<h3 class="Heading3 rt-card__title" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;">MIKA KOBAYASHI en Montevideo</h3>
+			<div class="rt-card-primary__meta">
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-calendar"></i>
+					</span>
+					<span class="Body3 rt-meta">Viernes 9 de Abril</span>
+				</div>
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-location-dot"></i>
+					</span>
+					<span class="Body3 rt-meta">Montevideo Music Box</span>
+				</div>
+				
+			</div>
+		</div>
+	</article>
+	<article class="rt-card-primary">
+		<a class="rt-card__media" href="/evento/Cosquin-Rock-2027/33989/">
+			<img src="https://files.redtickets.uy/imagenes/41a0a0fd-42dd-430d-b9fc-0483afca0b25_Event_33989.jpg" >
+		</a>
+		<div class="rt-card__body">		
+			
+			<h3 class="Heading3 rt-card__title" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;">Cosquin Rock 2027</h3>
+			<div class="rt-card-primary__meta">
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-calendar"></i>
+					</span>
+					<span class="Body3 rt-meta">Sábado 10 de Abril</span>
+				</div>
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-location-dot"></i>
+					</span>
+					<span class="Body3 rt-meta">Rambla Club de Golf</span>
+				</div>
+				
+			</div>
+		</div>
+	</article>
+	<article class="rt-card-primary">
+		<a class="rt-card__media" href="/evento/HAMMERFALL-en-Montevideo/33795/">
+			<img src="https://files.redtickets.uy/imagenes/04e996af-a3bb-4e0f-9498-93031e5e9fa8_Event_0.jpg" >
+		</a>
+		<div class="rt-card__body">		
+			
+			<h3 class="Heading3 rt-card__title" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;">HAMMERFALL en Montevideo</h3>
+			<div class="rt-card-primary__meta">
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-calendar"></i>
+					</span>
+					<span class="Body3 rt-meta">Martes 20 de Abril</span>
+				</div>
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-location-dot"></i>
+					</span>
+					<span class="Body3 rt-meta">Montevideo Music Box</span>
+				</div>
+				
+			</div>
+		</div>
+	</article>
+	<article class="rt-card-primary">
+		<a class="rt-card__media" href="/evento/KANONENFIEBER-en-Uruguay/33911/">
+			<img src="https://files.redtickets.uy/imagenes/743d2197-19c4-48fd-ad03-d996601a467c_Event_0.jpg" >
+		</a>
+		<div class="rt-card__body">		
+			
+			<h3 class="Heading3 rt-card__title" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;">KANONENFIEBER en Uruguay</h3>
+			<div class="rt-card-primary__meta">
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-calendar"></i>
+					</span>
+					<span class="Body3 rt-meta">Viernes 23 de Abril</span>
+				</div>
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-location-dot"></i>
+					</span>
+					<span class="Body3 rt-meta">Live Era</span>
+				</div>
+				
+			</div>
+		</div>
+	</article>
+	<article class="rt-card-primary">
+		<a class="rt-card__media" href="/evento/RHAPSODY-OF-FIRE---MASTERPLAN/31982/">
+			<img src="https://files.redtickets.uy/imagenes/a6d4ccaa-f5cf-4f2f-aeef-d06273f9d4c9_Event_0.jpg" >
+		</a>
+		<div class="rt-card__body">		
+			
+			<h3 class="Heading3 rt-card__title" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;">RHAPSODY OF FIRE + MASTERPLAN</h3>
+			<div class="rt-card-primary__meta">
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-calendar"></i>
+					</span>
+					<span class="Body3 rt-meta">Martes 4 de Mayo</span>
+				</div>
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-location-dot"></i>
+					</span>
+					<span class="Body3 rt-meta">Live Era</span>
+				</div>
+				
+			</div>
+		</div>
+	</article>
+	<article class="rt-card-primary">
+		<a class="rt-card__media" href="/evento/SOEN-en-Montevideo/31869/">
+			<img src="https://files.redtickets.uy/imagenes/28685498-a552-40d5-9a77-bfb5f61b7d15_Event_0.jpg" >
+		</a>
+		<div class="rt-card__body">		
+			
+			<h3 class="Heading3 rt-card__title" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;">SOEN en Montevideo</h3>
+			<div class="rt-card-primary__meta">
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-calendar"></i>
+					</span>
+					<span class="Body3 rt-meta">Miércoles 5 de Mayo</span>
+				</div>
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-location-dot"></i>
+					</span>
+					<span class="Body3 rt-meta">Live Era</span>
+				</div>
+				
+			</div>
+		</div>
+	</article>
+	<article class="rt-card-primary">
+		<a class="rt-card__media" href="/evento/MG-Cuarteto-de-Nos--Buenos-Aires/34285/">
+			<img src="https://files.redtickets.uy/imagenes/d1aed394-6367-40ae-a14b-df7a8e665ed8_Event_34285.jpg" >
+		</a>
+		<div class="rt-card__body">		
+			
+			<h3 class="Heading3 rt-card__title" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;">M&amp;G Cuarteto de Nos - Buenos Aires</h3>
+			<div class="rt-card-primary__meta">
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-calendar"></i>
+					</span>
+					<span class="Body3 rt-meta">Sábado 22 de Mayo</span>
+				</div>
+				<div class="rt-carousel-banner__meta-item">
+					<span class="rt-icon">
+					<i class="fa-regular fa-location-dot"></i>
+					</span>
+					<span class="Body3 rt-meta">Movistar Arena</span>
+				</div>
+				
+			</div>
+		</div>
+	</article>
+</main></div></div></div><div  class="row" ><div  class="col-xs-12" data-align-flex  data-align="center"><span class="Body2"  id="TEXTRESULTCOUNT" >265 - 287 de 287 Resultados</span></div></div><div  class="row" ><div  class="col-xs-12" ><div class="gxwebcomponent"  id="gxHTMLWrpW0061"><div class="gxwebcomponent-body form-horizontal Form-fx" ><div><span class="gx_ev ErrorViewerBullet"  data-gx-id="W0061gxErrorViewer"></span></div><div  class="Section"  data-gx-base-lib="bootstrapv3" data-abstract-form ><div id="W0061MAINTABLE"  class="Table" ><div  class="row" ><div  class="col-xs-12 hidden-xs hidden-sm" data-align-flex  data-align="center"><div id="W0061SECTION1"  class="PageSelectorContainer" ><span class="wPageSelector"  id="W0061TEXTBLOCK1" ><a href="/categoria/3/Musica/10">&lt;</a></span><span class="wPageSelector"  id="W0061TEXTBLOCK2" ><a href="/categoria/3/Musica/2">3</a></span><span class="wPageSelector"  id="W0061TEXTBLOCK3" ><a href="/categoria/3/Musica/3">4</a></span><span class="wPageSelector"  id="W0061TEXTBLOCK4" ><a href="/categoria/3/Musica/4">5</a></span><span class="wPageSelector"  id="W0061TEXTBLOCK5" ><a href="/categoria/3/Musica/5">6</a></span><span class="wPageSelector"  id="W0061TEXTBLOCK6" ><a href="/categoria/3/Musica/6">7</a></span><span class="wPageSelector"  id="W0061TEXTBLOCK7" ><a href="/categoria/3/Musica/7">8</a></span><span class="wPageSelector"  id="W0061TEXTBLOCK8" ><a href="/categoria/3/Musica/8">9</a></span><span class="wPageSelector"  id="W0061TEXTBLOCK9" ><a href="/categoria/3/Musica/9">10</a></span><span class="wPageSelector"  id="W0061TEXTBLOCK10" ><a href="/categoria/3/Musica/10">11</a></span><span class="wPageSelectorActual"  id="W0061TEXTBLOCK11" >12</span><span class="wPageSelectorDisable"  id="W0061TEXTBLOCK12" >&gt;</span></div></div></div><div  class="row" ><div  class="col-xs-12 hidden-md hidden-lg" data-align-flex  data-align="center"><div id="W0061SECTION2"  class="PageSelectorContainer" ><span class="wPageSelector"  id="W0061TEXTBLOCK13" ><a href="/categoria/3/Musica/10">&lt;</a></span><span class="wPageSelectorActual"  id="W0061TEXTBLOCK14" >Página 12 de 12</span><span class="wPageSelectorDisable"  id="W0061TEXTBLOCK15" >&gt;</span></div></div></div></div></div></div></div></div></div></div></div></div><div  class="row" ><div  class="col-xs-12" ><div id="TABLENOTFOUND"  class="Table"  style="display:none;" ><div  class="row" ><div  class="col-xs-12" ><span class="Title Center"  id="TXTNOTFOUND" >Text Block</span></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div><div  class="row" ><div id="UCRTFOOTER_MPAGE"  class="col-xs-12" ><div class="gx_usercontrol" id="RTFOOTER_MPAGEContainer"><!-- FOOTER -->
+<footer class="rt-footer" role="contentinfo">
+	<!-- Newsletter / CTA -->
+	<section class="rt-newsletter" aria-labelledby="rt-newsletter-title">
+		<div class="rt-container">
+			<h2 id="rt-newsletter-title">Sé el primero en enterarte de todo</h2>
+			<div class='rt-newsletter-cont-input'>
+				<div data-slot="contInputEmail" data-parent="RTFOOTER_MPAGEContainer"></div>
+				<div data-slot="contInputPhone" data-parent="RTFOOTER_MPAGEContainer"></div>
+			</div>
+			<div data-slot="contBtnSubscribe" data-parent="RTFOOTER_MPAGEContainer"></div>
+		</div>
+	</section>
+ 
+ 	<!-- Footer-->
+	<section class="rt-bottom">
+		<div class="rt-container rt-grid">
+			
+			<div class="rt-brand">
+				<a class="rt-logo" href="/" aria-label="RedTickets">
+					<img src="https://files.redtickets.uy/recursos/front/uy/logo-footer.svg" alt="" loading="lazy" height="54" />
+				</a>
+				<p class="rt-legal">
+					RedTickets Uruguay
+				</p>
+				<img src="https://files.redtickets.uy/recursos/front/uy/ANII.svg" alt="ANII" loading="lazy" height="28" style="margin: auto;" class="rt-anii-mobile">
+			</div>
+		
+			<nav class="rt-links" aria-label="Información">
+				<ul class="rt-linklist">
+					<li><a href="https://blog.redtickets.net/#ayuda">Devoluciones</a></li>
+					<li><a href="">Preguntas Frecuentes</a></li>
+					<li><a href="">Contacto</a></li>
+				</ul>
+				
+				<a class="rt-mail" href="mailto:hola@redtickets.uy">hola@redtickets.uy</a>
+			</nav>
+		
+			
+			
+			<div class="rt-right">
+				<div class="rt-social">
+					<h3 class="rt-footer-subtitle">Sumate a nuestra comunidad</h3>
+					<ul class="rt-social-list">
+							<li><a aria-label="" href="" target="_blank" rel="noopener"><img src="" alt="" loading="lazy" width="18" height="18" /></a></li>
+							<li><a aria-label="" href="" target="_blank" rel="noopener"><img src="" alt="" loading="lazy" width="18" height="18" /></a></li>
+							<li><a aria-label="" href="" target="_blank" rel="noopener"><img src="" alt="" loading="lazy" width="18" height="18" /></a></li>
+							<li><a aria-label="" href="" target="_blank" rel="noopener"><img src="" alt="" loading="lazy" width="18" height="18" /></a></li>
+		  
+					</ul>
+				</div>
+		
+				<div class="rt-apps">
+					<h3 class="rt-footer-subtitle">Descargá la app</h3>
+					<ul class="rt-badges">
+						<li><a aria-label="Descargar en App Store" href="" target="_blank" rel="noopener"><img src="https://files.redtickets.uy/recursos/front/uy/icon-googleplay.svg" alt="Disponible en App Store" loading="lazy" height="40" /></a></li>
+						<li><a aria-label="Descargar en Google Play" href="" target="_blank" rel="noopener"><img src="https://files.redtickets.uy/recursos/front/uy/icon-appstore.svg" alt="Disponible en Google Play" loading="lazy" height="40" /></a></li>
+					</ul>
+				</div>
+				
+				<div class="rt-anii">
+					<img src="https://files.redtickets.uy/recursos/front/uy/ANII.svg" alt="ANII" loading="lazy" height="28" />
+				</div>
+			</div>
+		</div>
+	</section>
+</footer>
+</div><div class="gx_usercontrol_child" id="RTFOOTER_MPAGEContainerRtfooter_contInputEmail" style="display:none;"><div id="RTFOOTER_CONTINPUTEMAIL_MPAGE"  class="Table" ><div  class="row" ><div  class="col-xs-12" ><div  class="gx-attribute" ><label  class="gx-label col-sm-3 rt-input-generalLabel rt-mb-14pxLabel control-label" for="vSUBSCRIBEEMAIL_MPAGE" data-gx-sr-only 
+>Subscribe Email</label><input type="email" id="vSUBSCRIBEEMAIL_MPAGE" name="vSUBSCRIBEEMAIL_MPAGE" value="" size="80" placeholder="Ingresá tu correo" spellcheck="false" maxlength="100" class="rt-input-general rt-mb-14px"  style="text-align:start"   onfocus="gx.evt.onfocus(this, 22,'',true,'',0)" onchange=";gx.evt.onchange(this, event)"  onblur=";gx.evt.onblur(this,22);"/></div></div></div></div></div><div class="gx_usercontrol_child" id="RTFOOTER_MPAGEContainerRtfooter_contInputPhone" style="display:none;"><div id="RTFOOTER_CONTINPUTPHONE_MPAGE"  class="Table" ><div  class="row" ><div  class="col-xs-12" ><div  class="gx-attribute" ><label  class="gx-label col-sm-3 rt-input-generalLabel rt-mb-14pxLabel control-label" for="vSUBSCRIBEPHONE_MPAGE" data-gx-sr-only 
+>Subscribe Phone</label><input type="tel" id="vSUBSCRIBEPHONE_MPAGE" name="vSUBSCRIBEPHONE_MPAGE" value="" size="20" placeholder="Ingresá tu número de whatsapp" spellcheck="false" maxlength="20" class="rt-input-general rt-mb-14px"  style="text-align:start"   onfocus="gx.evt.onfocus(this, 28,'',true,'',0)" onchange=";gx.evt.onchange(this, event)"  onblur=";gx.evt.onblur(this,28);"/></div></div></div></div></div><div class="gx_usercontrol_child" id="RTFOOTER_MPAGEContainerRtfooter_contBtnSubscribe" style="display:none;"><div id="RTFOOTER_CONTBTNSUBSCRIBE_MPAGE"  class="Table" ><div  class="row" ><div  class="col-xs-12" data-align-flex  data-align="center" data-valign="middle"><input type="button" data-gx-button name="SUBSCRIBE_MPAGE" id="SUBSCRIBE_MPAGE" value="Suscribite y obtené beneficios :)" title="Suscribite y obtené beneficios :)" class="rt-btn-primary"  data-gx-evt="5"   onfocus="gx.evt.onfocus(this, 33,'',true,'',0)"/></div></div></div></div></div></div><div  class="row" ><div  class="col-xs-12" ><div class="gx_usercontrol" id="UCDVONRESIZE_MPAGEContainer"><DVOnResize></div></div></div></div></div>
+<div><input type="hidden" name="GXState" value='{}'/></div>
+</form>
+<script type="text/javascript" src="/static/messages.spa.js?2124716911" ></script>
+<script type="text/javascript" src="/static/gxdec.js?1820180" ></script>
+<script type="text/javascript" src="/static/frontend/wcategory.js?202671012203921" ></script>
+<script type="text/javascript" src="/static/wcsearchpageselector.js?202642115461956" ></script>
+<script type="text/javascript">gx.setLanguageCode("spa");gx.setDateFormat("DMY");gx.setTimeFormat(24);gx.setCenturyFirstYear(40);gx.setDecimalPoint(",");gx.setThousandSeparator(".");gx.StorageTimeZone = 1;</script><script type="text/javascript" src="/static/DSv2/rt-message.js?2124716911" ></script>
+<script type="text/javascript" src="/static/UserControls/Frontend.rtMessageRender.js?2124716911" ></script>
+<script type="text/javascript" src="/static/DSv2/rt-menu.js?2124716911" ></script>
+<script type="text/javascript" src="/static/UserControls/Frontend.rtMenuRender.js?2124716911" ></script>
+<script type="text/javascript" src="/static/UserControls/Frontend.rtFooterRender.js?2124716911" ></script>
+<script type="text/javascript" src="/static/UserControls/DVOnResizeRender.js?2124716911" ></script>
+<script type="text/javascript" src="/static/frontend/rtmasterpage.js?20267161525813" ></script>
+</body>
+</html>
