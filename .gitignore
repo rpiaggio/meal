@@ -30,9 +30,12 @@ project/metals.sbt
 # Serverless
 serverless-state.json
 cloudformation*.json
+.serverless
 
 #Hydra
 .hydra/
 
 .bsp
 .direnv
+
+node_modules/

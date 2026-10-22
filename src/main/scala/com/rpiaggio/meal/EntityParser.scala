@@ -98,7 +98,8 @@ object EntityParser {
                           ) // str(index) != currentInstructionStr(currentMatching)
                             nextMatching(
                               i,
-                              currentInstruction.pi(currentMatching - 1)
+                              currentInstruction.pi(currentMatching - 1),
+                              currentCapture // Keep what was captured so far, the default would reset it.
                             )
                           else nextMatching(i + 1, 0, doCapture())
                         }

@@ -39,7 +39,7 @@ object EntityParserTest extends TestSuite {
       "<",
       "OSO<<<"
     )
-  ) //.metered(1.seconds)
+  ) // .metered(1.seconds)
 
   val converted =
     stream
@@ -50,8 +50,17 @@ object EntityParserTest extends TestSuite {
       .toList
 
   val tests = Tests {
-    Symbol("streamConvert") - {
+    test("streamConvert") {
       assert(converted == List(List("HOLA!"), List(">>:)<<OSO")))
+    }
+
+    test("partialTerminatorMatchKeepsCapture") {
+      val parsed = Stream
+        .emits[Id, String](List("<div>a</p>b</", "x</div>"))
+        .through(EntityParser[Id](ParsePattern("<div>{%}</div>")))
+        .compile
+        .toList
+      assert(parsed == List(List("a</p>b</x")))
     }
   }
 }
